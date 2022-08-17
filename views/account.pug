@@ -1,0 +1,79 @@
+extends base
+
+
+block content
+  .my-account-box-main
+  .container
+    .col-md-12
+      h1.m-b-20
+        strong
+          | Hello , 
+          strong= user.name
+    .my-account-page
+      .row 
+        .col-lg-4.col-md-12
+          .account-box
+            .service-box
+              .service-icon
+                if(user.currentOrders.length != 0)
+                  a(href='/myOrders')
+                    i.fa.fa-gift
+                else 
+                  a(href='#')
+                    i.fa.fa-gift
+              .service-desc
+                if(user.currentOrders.length != 0)
+                  h4 Your Orders
+                  p Track, return, or buy things again
+                else 
+                  h4 You Dont Have Any Order
+        .col-lg-4.col-md-12
+          .account-box
+            .service-box
+              .service-icon
+                a(href='/editAccount')
+                  i.fa.fa-lock
+              .service-desc
+                h4 Edit Details
+                p Edit email, name
+        .col-lg-4.col-md-12
+          .account-box
+            .service-box
+              .service-icon
+                if(user.negotiations.length != 0)
+                  if(user.role!="seller")
+                    a(href='/negotiate')
+                      i.fa.fa-location-arrow
+                  else 
+                    a(href='/seller_negotiate')
+                      i.fa.fa-location-arrow
+                else
+                  a(href='#')
+                    i.fa.fa-location-arrow 
+              .service-desc
+                if(user.negotiations.length != 0)
+                  h4 Your Pending Negotiations
+                  p Accept,reply,cancel your negotiations
+                else
+                  h4 You Dont Have Pending Negotiations
+        if(user.role == "seller")
+          .col-lg-4.col-md-12
+            .account-box
+              .service-box
+                .service-icon
+                  a(href='/seller_products')
+                    i.fa.fa-shopping-basket
+                .service-desc
+                  h4 Your products
+                  p View All products that you sell
+          .col-lg-4.col-md-12
+            .account-box
+              .service-box
+                .service-icon
+                  a(href='/seller_addProduct')
+                    i.fa.fa-cart-plus
+                .service-desc
+                  h4 Sell a New Product
+                  p Add a new Product
+        
+      

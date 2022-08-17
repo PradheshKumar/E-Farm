@@ -1,0 +1,119 @@
+doctype html
+// Basic
+
+// Start Main Top
+.main-top
+  .container-fluid
+    .row
+      .col-lg-6.col-md-6.col-sm-12.col-xs-12
+        
+        
+        .our-link
+          ul
+            li
+              if user
+                a(href=`/account`)
+                  i.fa.fa-user.s_color
+                  |  My Account
+                if user.negotiations
+                  each nego in user.negotiations
+                    span(class="negoId" data-id=nego.id data-user= user.role)
+           
+            if(!user)
+              li
+                a(href='/seller-login')
+                  i.fa.fa-cart-plus
+                  |  Start Selling
+      .col-lg-6.col-md-6.col-sm-12.col-xs-12
+        .login-box#basic.selectpicker.show-tick.form-control
+          ul.loginRedirectBtn
+            li
+              if(user)
+                a(href="#").logoutBtn
+                  i.fa.fa-user.s_color
+                    |  Logout
+              else 
+                a(href='/login')
+                  i.fa.fa-user.s_color
+                      |  Login
+          
+          //- select#basic.selectpicker.show-tick.form-control(data-placeholder='Sign In')
+          //-   option Register Here
+        
+// End Main Top
+// Start Main Top
+header.main-header
+  // Start Navigation
+  nav.navbar.navbar-expand-lg.navbar-light.bg-light.navbar-default.bootsnav.bgCont
+    .container
+      // Start Header Navigation
+      .navbar-header
+        button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbar-menu' aria-controls='navbars-rs-food' aria-expanded='false' aria-label='Toggle navigation')
+          i.fa.fa-bars
+        a.navbar-brand(href='/')
+          img.logo(src='./../../img/logo.png' alt='')
+        //-   img.logo(src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4
+        //- //8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==' alt='')
+      // End Header Navigation
+      // Collect the nav links, forms, and other content for toggling
+      #navbar-menu.collapse.navbar-collapse
+        ul.nav.navbar-nav.ml-auto(data-in='fadeInDown' data-out='fadeOutUp')
+          li.nav-item.active
+            a.nav-link(href='/') Home
+          li.nav-item
+            a.nav-link(href='/aboutUs') About Us
+          li.dropdown
+            a.nav-link(href='/overview') SHOP
+          
+      // /.navbar-collapse
+      // Start Atribute Navigation
+      
+      .attr-nav
+        ul
+          li.search
+            a(href='#')
+              i.fa.fa-search
+          if(user)
+            if(user.cart!=null && Object.keys(user.cart).length!=0  )
+              li.side-menu
+                a(href='#') 
+                  i.fa.fa-shopping-bag
+                  span.badge= Object.keys(user.cart).length
+                  p My Cart
+      // End Atribute Navigation
+    if(user && user.cart!=null)
+      .side
+            a.close-side(href='#')
+              i.fa.fa-times
+            li.cart-box
+              ul.cart-list
+                -a = 0
+                each prod,i in user.cart
+                  li
+                    a.photo(href='#')
+                      if(prod.img=="")
+                        img.cart-thumb(src=`./../../img/${prod.images[0]}` alt=`${prod.name} photo`)
+                      else 
+                        img.cart-thumb(src=`data:image/png;base64,${prod.img[0]}` alt=`${prod.name} photo`)
+                    h6
+                      a(href='#')= prod.name
+                    if prod.costPer == "1/4kg"
+                      p= `${user.cartQty[i]/4} kg` 
+                    else
+                      p= `${user.cartQty[i]}  ${prod.costPer}`
+                    span= `₹ ${user.cartQty[i]*prod.price}`
+                    - a = a + user.cartQty[i]*prod.price
+                li.total
+
+                  a.btn.btn-default.hvr-hover.btn-cart(href='/myCart') VIEW CART
+                  span.float-right
+                    strong= `Total: ₹ ${a}`
+   
+.top-search
+  .container
+    .input-group
+      span.input-group-addon
+        i.fa.fa-search
+      input.searchInput.form-control(type='text' placeholder='Search')
+      span.input-group-addon.close-search
+        i.fa.fa-times

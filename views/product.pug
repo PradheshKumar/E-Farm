@@ -1,0 +1,181 @@
+extends base
+
+block content 
+
+  .all-title-box
+    .container
+      .row
+        .col-lg-12
+          h2 Product Detail
+          ul.breadcrumb
+            li.breadcrumb-item
+              a(href='/overview') Shop
+            li.breadcrumb-item.active Product Detail 
+  .shop-detail-box-main
+    .container
+      .row
+        .col-xl-5.col-lg-5.col-md-6
+          #carousel-example-1.single-product-slider.carousel.slide(data-ride='carousel')
+            .carousel-inner(role='listbox')
+              .carousel-item.active
+                if(products[0].img=="")
+                  img.d-block.w-100(src=`./../img/${products[0].images[0]}` alt='First slide')
+                else 
+                  img.d-block.w-100(src=`data:image/png;base64,${products[0].img[0]}` alt='First slide') 
+              if(products[0].img=="")
+                each img,i in products[0].images
+                  if(i!=0)
+                    .carousel-item
+                      img.d-block.w-100(src=`./../img/${img}` alt=`${products[0].name} Image`)
+              else 
+                each img,i in products[0].img
+                  if(i!=0)
+                    .carousel-item
+                      p= img
+                      img.d-block.w-100(src=`data:image/png;base64,${img}` alt=`${products[0].name} Image`)
+            a.carousel-control-prev(href='#carousel-example-1' role='button' data-slide='prev')
+              i.fa.fa-angle-left(aria-hidden='true')
+              span.sr-only Previous
+            a.carousel-control-next(href='#carousel-example-1' role='button' data-slide='next')
+              i.fa.fa-angle-right(aria-hidden='true')
+              span.sr-only Next
+            ol.carousel-indicators
+              li.active(data-target='#carousel-example-1' data-slide-to='0')
+                if(products[0].img=="")
+                  img.d-block.w-100.img-fluid(src=`./../img/${products[0].images[0]}` alt='')
+                else 
+                  img.d-block.w-100.img-fluid(src=`data:image/png;base64,${products[0].img[0]}` alt='')
+              if(products[0].img=="")
+                each img,i in products[0].images
+                  if(i!=0)
+                    li(data-target='#carousel-example-1' data-slide-to= i)
+                      img.d-block.w-100.img-fluid(src=`./../img/${img}` alt='')
+              else
+                each img,i in products[0].img
+                  if(i!=0)
+                    li(data-target='#carousel-example-1' data-slide-to= i)
+                      img.d-block.w-100.img-fluid(src=`data:image/png;base64,${img}` alt='')
+         
+        .col-xl-7.col-lg-7.col-md-6
+          .single-product-details
+            h2= products[0].name
+            h5= `₹ ${products[0].price} per ${products[0].costPer}`
+            p.available-stock
+              if(products[0].costPer =="1/4kg")
+                span= `${products[0].stockLeft/4} kg available in stock`
+              else
+                span= `${products[0].stockLeft} ${products[0].costPer} available in stock`
+            p
+            h4 Short Description:
+            p= products[0].summary
+            ul
+              if(!user || user.role!="seller")
+                if(products[0].stockLeft !=0)
+                  li
+                    .form-group.quantity-box
+                      label.control-label Quantity
+                      input.form-control#qtyBox(value='0' min='0' max=products[0].stockLeft type='number')
+                else 
+                  p No stock available
+            if(!user || user.role!="seller")
+              if(products[0].stockLeft !=0)
+                .price-box-bar
+                  .cart-and-bay-btn
+                    if(user)
+                      button.btn.hvr-hover.cartBtn(data-fancybox-close='') Add to cart
+                    else
+                      a(href=`/login?prod=${products[0].id}`).btn.hvr-hover.cartBtn Login to add to Cart
+            .product-rating
+              - var n = 0;
+              while n++<Math.floor(products[0].ratingsAverage)
+                i.fas.fa-star
+              if((products[0].ratingsAverage - Math.floor(products[0].ratingsAverage)) != 0 )
+                i.fas.fa-star-half-alt
+              
+              span= `${products[0].ratingsAverage}(${products[0].ratingsQuantity})`
+      .row.my-5
+        .col-lg-12
+          .title-all.text-center
+            h1 About The Seller 
+      
+      
+      .row.my-5
+        .col-lg-12
+          .title-all.text-center
+            h1 Featured Products
+           
+          .featured-products-box.owl-carousel.owl-theme
+            each prod in products[1]
+              .item
+                .products-single.fix
+                  .box-img-hover
+                    if(prod.img=="")
+                      img.img-fluid(src=`./../img/${prod.images[0]}` alt=`${prod.name} photo`)
+                    else 
+                      img.img-fluid(src=`data:image/png;base64,${prod.img[0]}` alt=`${prod.name} photo`) 
+                    .mask-icon
+                      ul
+                        li
+                          a(href=`/product/${prod.id}` data-toggle='tooltip' data-placement='right' title='View')
+                            i.fas.fa-eye
+                        
+                      a.cart(href=`/product/${prod.id}`) Add to Cart
+                  .why-text
+                    a(href=`/product/${prod.id}`)
+                      h4= prod.name
+                      h5= `₹ ${prod.price} per ${prod.costPer}`
+            
+  // End Cart
+  // Start Instagram Feed
+  .instagram-box
+    .main-instagram.owl-carousel.owl-theme
+      .item
+        .ins-inner-box
+          img(src='./../images/instagram-img-01.jpg' alt='')
+          .hov-in
+            i.fab.fa-instagram
+      .item
+        .ins-inner-box
+          img(src='./../images/instagram-img-02.jpg' alt='')
+          .hov-in
+            i.fab.fa-instagram
+      .item
+        .ins-inner-box
+          img(src='./../images/instagram-img-03.jpg' alt='')
+          .hov-in
+            i.fab.fa-instagram
+      .item
+        .ins-inner-box
+          img(src='./../images/instagram-img-04.jpg' alt='')
+          .hov-in
+            i.fab.fa-instagram
+      .item
+        .ins-inner-box
+          img(src='./../images/instagram-img-05.jpg' alt='')
+          .hov-in
+            i.fab.fa-instagram
+      .item
+        .ins-inner-box
+          img(src='./../images/instagram-img-06.jpg' alt='')
+          .hov-in
+            i.fab.fa-instagram
+      .item
+        .ins-inner-box
+          img(src='./../images/instagram-img-07.jpg' alt='')
+          .hov-in
+            i.fab.fa-instagram
+      .item
+        .ins-inner-box
+          img(src='./../images/instagram-img-08.jpg' alt='')
+          .hov-in
+            i.fab.fa-instagram
+      .item
+        .ins-inner-box
+          img(src='./../images/instagram-img-09.jpg' alt='')
+          .hov-in
+            i.fab.fa-instagram
+      .item
+        .ins-inner-box
+          img(src='./../images/instagram-img-05.jpg' alt='')
+          .hov-in
+            i.fab.fa-instagram

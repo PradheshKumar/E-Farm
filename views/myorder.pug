@@ -1,0 +1,43 @@
+extends base
+
+block content
+    .all-title-box
+        .container
+         .row
+             .col-lg-12
+                h2 My Orders
+                ul.breadcrumb
+                    li.breadcrumb-item
+                        a(href='/') Home
+                    li.breadcrumb-item.active Orders
+
+    .cart-box-main
+        .container
+            -sum=0
+            .row
+                .col-lg-12
+                    .table-main.table-responsive
+                        table.table
+                            thead
+                                tr
+                                    th Order No
+                                    th Order Placed On
+                                    th Products
+                                    th Total Price
+                                    th Estimated Delivery Date                             
+                            tbody
+                                each order,i in user.currentOrders
+                                    tr.cartProducts
+                                        td.thumbnail-img
+                                            a(href=`/viewOrder/${order.id}`)= i+1
+                                        td.thumbnail-img
+                                            a(href=`/viewOrder/${order.id}`)= (order.createdAt).toString().slice(4,16)
+                                        td.thumbnail-img
+                                            if(order.products.length ==1 )
+                                                a(href=`/viewOrder/${order.id}`)= order.products[0].name
+                                            else
+                                                a(href=`/viewOrder/${order.id}`)= `${order.products[0].name} and ${order.products.length-1} more products`
+                                        td.thumbnail-img
+                                            a(href=`/viewOrder/${order.id}`)= `₹ ${order.totalPrice}`
+                                        td.thumbnail-img
+                                            a(href=`/viewOrder/${order.id}`)= order.estimateDelivery.toString().slice(4,16)
