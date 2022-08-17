@@ -102,7 +102,7 @@ productSchema.pre("save", function (next) {
 productSchema.pre(/^find/, function (next) {
   this.populate({
     path: "seller",
-    select: "-__v -passwordChangedAt -role -photo -email",
+    select: "-__v -passwordChangedAt -role -photo",
   });
 
   next();

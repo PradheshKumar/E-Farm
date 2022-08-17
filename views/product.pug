@@ -95,8 +95,37 @@ block content
               span= `${products[0].ratingsAverage}(${products[0].ratingsQuantity})`
       .row.my-5
         .col-lg-12
-          .title-all.text-center
+          .aboutSeller.text-center
             h1 About The Seller 
+            .sellerName.text-left
+              h3= `Name : ${products[0].seller.name}`
+            .product-rating.text-right.sellerRating
+              span Ratings :
+              - var n = 0;
+              while n++<Math.floor(Number(products[0].seller._doc.rating))
+                i.fas.fa-star
+              if((products[0].seller._doc.rating - Math.floor(products[0].seller._doc.rating)) != 0 )
+                i.fas.fa-star-half-alt
+              
+              span= ` (${products[0].seller._doc.rating})`
+            .sellerMail.text-right 
+              i.fa.fa-address-card
+              span=  `  Contact : ${products[0].seller.email} `
+            .sellerLocation.text-left 
+              i.fa.fa-map-pin
+              a(href=`https://www.google.com/maps/place/${products[0].seller.location.coordinates[1]},${products[0].seller.location.coordinates[0]}` target="_blank")=  " "+ products[0].seller.location.city.toUpperCase()
+            .col-lg-12
+            .title-all.text-center
+              h1 Also Sells
+            
+            .featured-products-box.owl-carousel.owl-theme
+              each prod in products[0].seller._doc.products
+                .item
+                  .products-single.fix
+                    .box-img-hover
+                      a(href=`/product/${prod.id}`)
+                        img.img-fluid(src=`./../img/${prod.images[0]}` alt=`${prod.name} photo`)
+                     
       
       
       .row.my-5

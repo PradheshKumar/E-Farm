@@ -2419,6 +2419,30 @@ ul.cart-list > li.total > .btn:hover {
   transform: scale(0.93);
   color: #fff;
 }
+.aboutSeller{
+  background-color: rgb(186, 181, 181);
+  padding: 1.5rem;
+}
+.aboutSeller h1{
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+  
+}
+.sellerName h3{margin-left: 20px;
+  font-size: 20px;
+    font-weight: 6  00;
+    color: #000000;
+}
+.sellerRating,.sellerMail,.sellerLocation{
+  color:black
+}
+.sellerLocation i {
+  color:#35b440
+}
+.sellerLocation a:hover {
+  color:#35b440
+}
 @-webkit-keyframes sonarEffect {
   0% {
     opacity: 0.3;
