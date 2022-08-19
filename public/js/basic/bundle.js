@@ -5909,7 +5909,6 @@ var sellerSideHandle = function sellerSideHandle() {
     addProdBtn.addEventListener("click", function (e) {
       e.preventDefault();
       addProduct();
-      console.log("Sent");
       var flag = 0;
       addProdInput.forEach(function (el) {
         if (!el.value) {
@@ -5972,7 +5971,7 @@ var addProduct = /*#__PURE__*/function () {
             res = _context2.sent;
 
             if (res.data.status === "success") {
-              window.location.href("/seller_products");
+              window.location.href = "/seller_products";
             }
 
           case 15:

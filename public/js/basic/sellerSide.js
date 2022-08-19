@@ -41,7 +41,6 @@ export const sellerSideHandle = () => {
     addProdBtn.addEventListener("click", (e) => {
       e.preventDefault();
       addProduct();
-      console.log("Sent");
       let flag = 0;
       addProdInput.forEach((el) => {
         if (!el.value) {
@@ -77,6 +76,7 @@ const addProduct = async () => {
   form.append("type", prodType.value);
   form.append("stockLeft", prodStockLeft.value);
   console.log(form.entries());
+
   const res = await axios({
     method: "POST",
     url: `/api/v1/product/addProduct`,
@@ -84,7 +84,7 @@ const addProduct = async () => {
   });
 
   if (res.data.status === "success") {
-    window.location.href("/seller_products");
+    window.location.href = "/seller_products";
   }
 };
 const updateProducts = () => {
