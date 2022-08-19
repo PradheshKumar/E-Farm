@@ -62,17 +62,35 @@ export const signUp = async (name, email, password, passwordConfirm) => {
         }, 200);
       }
     } else {
-      const res = await axios({
-        method: "POST",
-        url: "/api/v1/seller/signup",
-        data: { name, email, password, passwordConfirm },
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const lat = position.coords.latitude;
+        const long = position.coords.longitude;
+        const res1 = await axios({
+          method: "GET",
+          url: `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${long}&key=00a0febcd96b4f22aa5b755c3ef62fc3`,
+        });
+        console.log(res1.data.results[0].components.city);
+        const res = await axios({
+          method: "POST",
+          url: "/api/v1/seller/signup",
+          data: {
+            name,
+            email,
+            password,
+            passwordConfirm,
+            location: {
+              coordinates: [long, lat],
+              city: res1.data.results[0].components.city,
+            },
+          },
+        });
+        if (res.data.status === "success") {
+          showAlert("success", "SignedUp successfully!");
+          window.setTimeout(() => {
+            location.assign("/seller_products");
+          }, 200);
+        }
       });
-      if (res.data.status === "success") {
-        showAlert("success", "SignedUp successfully!");
-        window.setTimeout(() => {
-          location.assign("/seller_products");
-        }, 200);
-      }
     }
   } catch (err) {
     showValidate(input[0]);
@@ -408,6 +426,6 @@ export const filterPrice = async (start, end) => {
 };
 export const withinDistance = async (dist) => {
   navigator.geolocation.getCurrentPosition((position) => {
-    window.location.href = `/productsWithin/${position.coords.latitude},${position.coords.longitude},${dist}?sort=-price&price[gte]=20&price[lte]=60`;
+    window.location.href = `/productsWithin/${position.coords.latitude},${position.coords.longitude},${dist}`;
   });
 };
