@@ -18,7 +18,7 @@ block content
           #carousel-example-1.single-product-slider.carousel.slide(data-ride='carousel')
             .carousel-inner(role='listbox')
               .carousel-item.active
-                img.d-block.image.w-100(src=`./../img/${products[0].images[0]}` alt='First slide')
+                img.d-block.w-100.image(src=`./../img/${products[0].images[0]}` alt='First slide')
               each img,i in products[0].images
                 if(i!=0)
                   .carousel-item
