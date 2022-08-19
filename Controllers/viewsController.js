@@ -168,8 +168,16 @@ exports.getNegotiations = catchAsync(async (req, res, next) => {
 });
 exports.getProduct = catchAsync(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
-  const sellerProd = product.seller._doc.products.map((el) => el.toString());
 
+  const sellerProd1 = (
+    await Seller.findById(product.seller.id).populate({
+      path: "product",
+      select: "id -seller",
+    })
+  ).product;
+
+  const sellerProd = sellerProd1.map((el) => el.id);
+  console.log(sellerProd);
   let sellerProds = await Product.find({
     _id: sellerProd,
   });

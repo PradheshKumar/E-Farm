@@ -209,6 +209,7 @@ exports.isLoggedIn = async (req, res, next) => {
       currentUser.products = await Product.find({ seller: currentUser.id });
       // THERE IS A LOGGED IN USER
       currentUser.role = "seller";
+      console.log(currentUser.products);
       res.locals.user = currentUser;
 
       return next();

@@ -98,14 +98,6 @@ sellerSchema.virtual("product", {
   foreignField: "seller",
   localField: "_id",
 });
-sellerSchema.pre(/^find/, function (next) {
-  this.populate({
-    path: "product",
-    path: "_id",
-  });
-
-  next();
-});
 sellerSchema.pre("save", function (next) {
   if (!this.isModified("password") || this.isNew) return next();
 
