@@ -35,7 +35,7 @@ block content
                                     each nego in negos
                                         tr.negoRow
                                             td.thumbnail-img
-                                                img.image.img-fluid(src=`./../img/${nego.product.images[0]}` alt=`${nego.product.name} photo`)
+                                                img.img-fluid(src=`./../img/${nego.product.images[0]}` alt=`${nego.product.name} photo` onError="this.src = './../img/default.jpg'")
                                                
                                                 
                                             td.name-pr

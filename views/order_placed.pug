@@ -32,7 +32,7 @@ block content
                                         p= i+1
                                       td.thumbnail-img
                                           a(href='#')
-                                            img.image.img-fluid(src=`./../img/${prod.images[0]}` alt='') 
+                                            img.img-fluid(src=`./../img/${prod.images[0]}` alt='' onError="this.src = './../img/default.jpg'") 
                                       td.name-pr
                                           a(href=`/product/${prod.id}`)= prod.name
                                       td.price-pr
@@ -67,7 +67,7 @@ block content
                 .box-img-hover
                   .type-lb
                     p.sale Sale
-                  img.image.img-fluid(src=`./../img/${product.images[0]}` alt='Image')
+                  img.img-fluid(src=`./../img/${product.images[0]}` alt='Image' onError="this.src = './../img/default.jpg'")
                   .mask-icon
                     ul
                       li
@@ -85,7 +85,7 @@ block content
                 .box-img-hover
                   .type-lb
                     p.sale Sale
-                  img.image.img-fluid(src=`./../img/${product.images[0]}` alt='Image') 
+                  img.img-fluid(src=`./../img/${product.images[0]}` alt='Image' onError="this.src = './../img/default.jpg'") 
                   .mask-icon
                     ul
                       li

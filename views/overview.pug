@@ -48,7 +48,7 @@ block content
                         .products-single.fix
                           .box-img-hover
                             .type-lb
-                            img.image.img-fluid(src=`./../img/${prod.images[0]}` alt=`${prod.name} photo`)
+                            img.img-fluid(src=`./../img/${prod.images[0]}` alt=`${prod.name} photo` onError="this.src = './../img/default.jpg'")
                             .mask-icon
                               ul
                                 li
@@ -70,7 +70,7 @@ block content
                           .products-single.fix
                             .box-img-hover
                               .type-lb
-                              img.image.img-fluid(src=`./../img/${prod.images[0]}` alt='Image')
+                              img.img-fluid(src=`./../img/${prod.images[0]}` alt='Image' onError="this.src = './../img/default.jpg'")
                               
                               .mask-icon
                                 ul

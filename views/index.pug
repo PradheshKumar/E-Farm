@@ -68,15 +68,15 @@ block content
       .row
         .col-lg-4.col-md-4.col-sm-12.col-xs-12
           .shop-cat-box
-            img.image.img-fluid(src='images/categories_img_01.jpg' alt='')
+            img.img-fluid(src='images/categories_img_01.jpg' alt='' onError="this.src = './../img/default.jpg'")
             a.btn.hvr-hover(href='/overview/?type=vegetable') Fresh Vegetables
         .col-lg-4.col-md-4.col-sm-12.col-xs-12
           .shop-cat-box
-            img.image.img-fluid(src='images/categories_img_02.jpg' alt='')
+            img.img-fluid(src='images/categories_img_02.jpg' alt='' onError="this.src = './../img/default.jpg'")
             a.btn.hvr-hover(href='/overview/?type=fruit') Fresh Fruits
         .col-lg-4.col-md-4.col-sm-12.col-xs-12
           .shop-cat-box
-            img.image.img-fluid(src='images/categories_img_03.jpg' alt='')
+            img.img-fluid(src='images/categories_img_03.jpg' alt='' onError="this.src = './../img/default.jpg'")
             a.btn.hvr-hover(href='/overview/?type=leaf') Fresh Leafs
   // End Categories
   
@@ -104,7 +104,7 @@ block content
                 .box-img-hover
                   .type-lb
                     p.sale Sale
-                  img.image.img-fluid(src=`./../img/${product.images[0]}` alt='Image')
+                  img.img-fluid(src=`./../img/${product.images[0]}` alt='Image' onError="this.src = './../img/default.jpg'")
                   .mask-icon
                     ul
                       li
@@ -122,7 +122,7 @@ block content
                 .box-img-hover
                   .type-lb
                     p.sale Sale
-                  img.image.img-fluid(src=`./../img/${product.images[0]}` alt='Image')
+                  img.img-fluid(src=`./../img/${product.images[0]}` alt='Image' onError="this.src = './../img/default.jpg'")
                   .mask-icon
                     ul
                       li

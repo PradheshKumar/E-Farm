@@ -51,14 +51,14 @@ const negoIds = document.querySelectorAll(".negoId");
 const filterBtn = document.querySelector(".filterBtn");
 const distValue = document.querySelector(".distValue");
 // const filterBtn = document.querySelectorAll(".filterBtn");
-let im = document.querySelectorAll(".image");
-console.log(im);
-im.forEach((el) => {
-  el.onerror = function () {
-    console.log(el);
-    el.src = "./../img/default.jpg";
-  };
-});
+// let im = document.querySelectorAll(".image");
+// console.log(im);
+// im.forEach((el) => {
+//   el.onerror = function () {
+//     console.log(el);
+//     el.src = "./../img/default.jpg";
+//   };
+// });
 
 addListener();
 function showNotification(name, bid, negoStage) {

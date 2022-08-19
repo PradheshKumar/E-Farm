@@ -108,15 +108,15 @@ block content
       .row
         .col-lg-4.col-md-4.col-sm-12.col-xs-12
           .shop-cat-box
-            img.image.img-fluid(src='images/categories_img_01.jpg' alt='')
+            img.img-fluid(src='images/categories_img_01.jpg' alt='' onError="this.src = './../img/default.jpg'")
             a.btn.hvr-hover(href='/overview/?type=vegetable') Fresh Vegetables
         .col-lg-4.col-md-4.col-sm-12.col-xs-12
           .shop-cat-box
-            img.image.img-fluid(src='images/categories_img_02.jpg' alt='')
+            img.img-fluid(src='images/categories_img_02.jpg' alt='' onError="this.src = './../img/default.jpg'")
             a.btn.hvr-hover(href='/overview/?type=fruit') Fresh Fruits
         .col-lg-4.col-md-4.col-sm-12.col-xs-12
           .shop-cat-box
-            img.image.img-fluid(src='images/categories_img_03.jpg' alt='')
+            img.img-fluid(src='images/categories_img_03.jpg' alt='' onError="this.src = './../img/default.jpg'")
             a.btn.hvr-hover(href='/overview/?type=leaf') Fresh Leafs
   // End Categories
   
@@ -143,7 +143,7 @@ block content
               .box-img-hover
                 .type-lb
                   p.sale Sale
-                img.image.img-fluid(src=`./../img/${product.images[0]}` alt=`${product.name} photo`)
+                img.img-fluid(src=`./../img/${product.images[0]}` alt=`${product.name} photo` onError="this.src = './../img/default.jpg'")
                 .mask-icon
                   ul
                     li
@@ -167,7 +167,7 @@ block content
         .col-md-6.col-lg-4.col-xl-4
           .blog-box
             .blog-img
-              img.image.img-fluid(src='images/blog-img.jpg' alt='')
+              img.img-fluid(src='images/blog-img.jpg' alt='' onError="this.src = './../img/default.jpg'")
             .blog-content
               .title-blog
                 h3 Fusce in augue non nisi fringilla
@@ -186,7 +186,7 @@ block content
         .col-md-6.col-lg-4.col-xl-4
           .blog-box
             .blog-img
-              img.image.img-fluid(src='images/blog-img-01.jpg' alt='')
+              img.img-fluid(src='images/blog-img-01.jpg' alt='' onError="this.src = './../img/default.jpg'")
             .blog-content
               .title-blog
                 h3 Fusce in augue non nisi fringilla
@@ -205,7 +205,7 @@ block content
         .col-md-6.col-lg-4.col-xl-4
           .blog-box
             .blog-img
-              img.image.img-fluid(src='images/blog-img-02.jpg' alt='')
+              img.img-fluid(src='images/blog-img-02.jpg' alt='' onError="this.src = './../img/default.jpg'")
             .blog-content
               .title-blog
                 h3 Fusce in augue non nisi fringilla

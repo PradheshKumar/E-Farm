@@ -6100,15 +6100,15 @@ var updatePassBtn = document.querySelector(".updatePassBtn");
 var negoIds = document.querySelectorAll(".negoId");
 var filterBtn = document.querySelector(".filterBtn");
 var distValue = document.querySelector(".distValue"); // const filterBtn = document.querySelectorAll(".filterBtn");
+// let im = document.querySelectorAll(".image");
+// console.log(im);
+// im.forEach((el) => {
+//   el.onerror = function () {
+//     console.log(el);
+//     el.src = "./../img/default.jpg";
+//   };
+// });
 
-var im = document.querySelectorAll(".image");
-console.log(im);
-im.forEach(function (el) {
-  el.onerror = function () {
-    console.log(el);
-    el.src = "./../img/default.jpg";
-  };
-});
 (0, _checkOut.addListener)();
 
 function showNotification(name, bid, negoStage) {
