@@ -5908,6 +5908,8 @@ var sellerSideHandle = function sellerSideHandle() {
   if (addProdBtn) {
     addProdBtn.addEventListener("click", function (e) {
       e.preventDefault();
+      addProduct();
+      console.log("Sent");
       var flag = 0;
       addProdInput.forEach(function (el) {
         if (!el.value) {
@@ -5917,54 +5919,19 @@ var sellerSideHandle = function sellerSideHandle() {
         }
       });
       if (flag == 1) return;
-      addProduct();
     });
   }
 
   if (prodImages) {
     // let images = [/];
     prodImages.addEventListener("change", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var getBase64, j;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (prodImages.files.length != 0) prodImageLabel.innerHTML = "".concat(prodImages.files.length, " files uploaded");else prodImageLabel.innerHTML = "No File Choosen"; // for (let i = 0; i < prodImages.files.length; i++)
-              //   images.push(prodImages.files.item(i));
-              // console.log(document.querySelector("input[type=file]")["files"][0]);
-              // var file = document.querySelector("input[type=file]")["files"][0];
-              // const file = images;
+              if (prodImages.files.length != 0) prodImageLabel.innerHTML = "".concat(prodImages.files.length, " files uploaded");else prodImageLabel.innerHTML = "No File Choosen";
 
-              getBase64 = function getBase64(file) {
-                return new Promise(function (resolve, reject) {
-                  var reader = new FileReader();
-                  reader.readAsDataURL(file);
-
-                  reader.onload = function () {
-                    return resolve(reader.result);
-                  };
-
-                  reader.onerror = function (err) {
-                    return reject(err);
-                  };
-                });
-              }; // const images = await Promise.all(
-
-
-              for (j = 0; j < prodImages.files.length; j++) {
-                img.push(getBase64(prodImages.files[j]));
-              }
-
-              _context.next = 5;
-              return Promise.all(img);
-
-            case 5:
-              img = _context.sent;
-              img = img.map(function (el) {
-                return el.split(",")[1];
-              }); // );
-
-            case 7:
+            case 1:
             case "end":
               return _context.stop();
           }
@@ -5978,34 +5945,37 @@ exports.sellerSideHandle = sellerSideHandle;
 
 var addProduct = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-    var res;
+    var form, res;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+            form = new FormData();
+            form.append("name", prodName.value);
+            form.append("price", prodPrice.value);
+            form.append("costPer", prodCostPer.value);
+            form.append("summary", prodSummary.value);
+            form.append("images", prodImages.files[0]);
+            if (prodImages.files[1]) form.append("images", prodImages.files[1]);
+            if (prodImages.files[2]) form.append("images", prodImages.files[2]);
+            form.append("type", prodType.value);
+            form.append("stockLeft", prodStockLeft.value);
+            console.log(form.entries());
+            _context2.next = 13;
             return (0, _axios.default)({
               method: "POST",
-              url: "/api/v1/seller/addProduct",
-              data: {
-                name: prodName.value,
-                price: prodPrice.value,
-                costPer: prodCostPer.value,
-                summary: prodSummary.value,
-                img: img,
-                type: prodType.value,
-                stockLeft: prodStockLeft.value
-              }
+              url: "/api/v1/product/addProduct",
+              data: form
             });
 
-          case 2:
+          case 13:
             res = _context2.sent;
 
             if (res.data.status === "success") {
               window.location.href("/seller_products");
             }
 
-          case 4:
+          case 15:
           case "end":
             return _context2.stop();
         }
@@ -6382,7 +6352,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50090" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55617" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

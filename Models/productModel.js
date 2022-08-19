@@ -61,7 +61,6 @@ const productSchema = new mongoose.Schema(
     },
     type: { type: String, enum: ["vegetable", "fruit", "leaf", "crop"] },
     stockLeft: { type: Number, required: [true, "Enter Remaining Stock"] },
-    img: [String],
     location: {
       // GeoJSON
       type: {
@@ -83,13 +82,6 @@ const productSchema = new mongoose.Schema(
 productSchema.index({ price: 1, ratingsAverage: -1 });
 productSchema.index({ slug: 1 });
 productSchema.index({ location: "2dsphere" });
-
-// Virtual populate
-// productSchema.virtual('reviews', {
-//   ref: 'Review',
-//   foreignField: 'product',
-//   localField: '_id',
-// });
 
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
 productSchema.pre("save", function (next) {

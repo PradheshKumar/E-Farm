@@ -74,21 +74,6 @@ exports.getAllUsers = factory.getAll(User);
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
 
-exports.addProductSeller = catchAsync(async (req, res, next) => {
-  setUser(res);
-  if (!req.body.seller) req.body.seller = req.user.id;
-  const seller = await User.findById(req.user.id);
-  if (seller.productSold)
-    await User.findByIdAndUpdate(req.user.id, {
-      productSold: seller.productSold + 1,
-    });
-  else
-    await User.findByIdAndUpdate(req.user.id, {
-      productSold: 1,
-    });
-
-  next();
-});
 exports.addToCart = catchAsync(async (req, res, next) => {
   try {
     console.log("1");
@@ -178,7 +163,6 @@ exports.rmCart = catchAsync(async (req, res, next) => {
     },
   });
 });
-exports.addProduct = factory.createOne(Product);
 
 // /tours-within/:distance/center/:latlng
 // /tours-within/233/center/13.058029017820031, 80.27323196844695

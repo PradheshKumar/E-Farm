@@ -167,19 +167,20 @@ exports.getNegotiations = catchAsync(async (req, res, next) => {
   });
 });
 exports.getProduct = catchAsync(async (req, res, next) => {
-  const product = await Product.findById(req.params.id); const sellerProd = product.seller._doc.products.map(el=>el.toString());
-  
-  let sellerProds= await Product.find({
-    '_id' : sellerProd
-})
- product.seller._doc.products = sellerProds;
+  const product = await Product.findById(req.params.id);
+  const sellerProd = product.seller._doc.products.map((el) => el.toString());
+
+  let sellerProds = await Product.find({
+    _id: sellerProd,
+  });
+  product.seller._doc.products = sellerProds;
   let products = await Product.find({
     _id: { $ne: req.params.id },
   });
   products = [product, products];
   if (!product)
     return next(new AppError("There is no product with that id", 404));
-    
+
   res.status(200).render("product", {
     title: product.name,
     products,

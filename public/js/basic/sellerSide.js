@@ -40,6 +40,8 @@ export const sellerSideHandle = () => {
   if (addProdBtn) {
     addProdBtn.addEventListener("click", (e) => {
       e.preventDefault();
+      addProduct();
+      console.log("Sent");
       let flag = 0;
       addProdInput.forEach((el) => {
         if (!el.value) {
@@ -49,7 +51,6 @@ export const sellerSideHandle = () => {
         }
       });
       if (flag == 1) return;
-      addProduct();
     });
   }
   if (prodImages) {
@@ -58,43 +59,28 @@ export const sellerSideHandle = () => {
       if (prodImages.files.length != 0)
         prodImageLabel.innerHTML = `${prodImages.files.length} files uploaded`;
       else prodImageLabel.innerHTML = "No File Choosen";
-      // for (let i = 0; i < prodImages.files.length; i++)
-      //   images.push(prodImages.files.item(i));
-      // console.log(document.querySelector("input[type=file]")["files"][0]);
-      // var file = document.querySelector("input[type=file]")["files"][0];
-      // const file = images;
-      const getBase64 = (file) =>
-        new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => resolve(reader.result);
-          reader.onerror = (err) => reject(err);
-        });
-      // const images = await Promise.all(
-      for (let j = 0; j < prodImages.files.length; j++) {
-        img.push(getBase64(prodImages.files[j]));
-      }
-      img = await Promise.all(img);
-      img = img.map((el) => el.split(",")[1]);
-
-      // );
     });
   }
 };
 
 const addProduct = async () => {
+  const form = new FormData();
+
+  form.append("name", prodName.value);
+  form.append("price", prodPrice.value);
+  form.append("costPer", prodCostPer.value);
+  form.append("summary", prodSummary.value);
+
+  form.append("images", prodImages.files[0]);
+  if (prodImages.files[1]) form.append("images", prodImages.files[1]);
+  if (prodImages.files[2]) form.append("images", prodImages.files[2]);
+  form.append("type", prodType.value);
+  form.append("stockLeft", prodStockLeft.value);
+  console.log(form.entries());
   const res = await axios({
     method: "POST",
-    url: `/api/v1/seller/addProduct`,
-    data: {
-      name: prodName.value,
-      price: prodPrice.value,
-      costPer: prodCostPer.value,
-      summary: prodSummary.value,
-      img,
-      type: prodType.value,
-      stockLeft: prodStockLeft.value,
-    },
+    url: `/api/v1/product/addProduct`,
+    data: form,
   });
 
   if (res.data.status === "success") {

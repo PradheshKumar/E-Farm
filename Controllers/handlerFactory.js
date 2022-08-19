@@ -42,17 +42,20 @@ exports.updateOne = (Model) =>
     });
   });
 
-exports.createOne = (Model) =>
+exports.createOne = (Model, nextFn = false) =>
   catchAsync(async (req, res, next) => {
     if (!Model) Model = setUser(req, res);
     const doc = await Model.create(req.body);
-
-    res.status(201).json({
-      status: "success",
-      data: {
-        data: doc,
-      },
-    });
+    if (nextFn) {
+      req.body.id = doc.id;
+      next();
+    } else
+      res.status(201).json({
+        status: "success",
+        data: {
+          data: doc,
+        },
+      });
   });
 
 exports.getOne = (Model, popOptions) =>

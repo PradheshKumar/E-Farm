@@ -27,12 +27,7 @@ router.patch("/updateMe", setUser, userController.updateMe);
 router.delete("/deleteMe", setUser, userController.deleteMe);
 
 // router.use(authController.restrictTo('seller'));
-router.post(
-  "/addProduct",
-  setUser,
-  userController.addProductSeller,
-  userController.addProduct
-);
+
 // router.use(authController.restrictTo('admin'));
 
 router

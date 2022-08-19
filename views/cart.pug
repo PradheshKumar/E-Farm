@@ -32,10 +32,7 @@ block content
                                     tr.cartProducts
                                         td.thumbnail-img
                                             a(href='#')
-                                                if(prod.img=="")
-                                                    img.img-fluid(src=`./../img/${prod.images[0]}` alt='')
-                                                else 
-                                                    img.img-fluid(src=`data:image/png;base64,${prod.img[0]}` alt='') 
+                                                img.img-fluid(src=`./../img/${prod.images[0]}` alt='') 
                                         td.name-pr
                                             a(href=`/product/${prod.id}`)= prod.name
                                         td.price-pr

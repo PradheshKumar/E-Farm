@@ -91,10 +91,7 @@ header.main-header
                 each prod,i in user.cart
                   li
                     a.photo(href='#')
-                      if(prod.img=="")
-                        img.cart-thumb(src=`./../../img/${prod.images[0]}` alt=`${prod.name} photo`)
-                      else 
-                        img.cart-thumb(src=`data:image/png;base64,${prod.img[0]}` alt=`${prod.name} photo`)
+                      img.cart-thumb(src=`./../../img/${prod.images[0]}` alt=`${prod.name} photo`)
                     h6
                       a(href='#')= prod.name
                     if prod.costPer == "1/4kg"
