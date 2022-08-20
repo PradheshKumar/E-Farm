@@ -17,6 +17,7 @@ const negotiationRouter = require("./Routes/negotiationRoutes");
 const orderRouter = require("./Routes/orderRoutes");
 const productRouter = require("./Routes/productRoutes");
 const sellerRouter = require("./Routes/sellerRoutes");
+const farmSellerRouter = require("./Routes/farmSellerRoutes");
 const viewRouter = require("./Routes/viewRoutes");
 
 // Start express app
@@ -123,6 +124,7 @@ app.use("/", viewRouter);
 app.use("/api/v1/buyer", buyerRouter);
 app.use("/api/v1/user", buyerRouter);
 app.use("/api/v1/seller", sellerRouter);
+app.use("/api/v1/farmSeller", farmSellerRouter);
 app.use("/api/v1/order", orderRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/negotiation", negotiationRouter);

@@ -3,13 +3,16 @@ const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
 const Buyer = require("../Models/buyerModel");
 const Seller = require("../Models/sellerModel");
+const FarmSeller = require("../Models/farmSellerModel");
 const Product = require("../Models/productModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const Email = require("../utils/email");
 let User;
 const setUser = (res) => {
-  User = res.locals.user == "buyer" ? Buyer : Seller;
+  if (res.locals.user == "buyer") User = Buyer;
+  else if (res.locals.user == "seller") User = Seller;
+  else User = FarmSeller;
 };
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {

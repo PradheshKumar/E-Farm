@@ -19,6 +19,7 @@ import {
 import { signUpForm, forgotPasswordForm } from "./loginForm.js";
 import { addListener } from "./checkOut.js";
 import { sellerSideHandle } from "./sellerSide.js";
+import dist from "express-rate-limit";
 const input = document.querySelectorAll(".validate-input .input100");
 const form = document.querySelector(".validate-form");
 const loginBtn = document.querySelector(".loginBtn");
@@ -50,17 +51,13 @@ const updatePassBtn = document.querySelector(".updatePassBtn");
 const negoIds = document.querySelectorAll(".negoId");
 const filterBtn = document.querySelector(".filterBtn");
 const distValue = document.querySelector(".distValue");
-// const filterBtn = document.querySelectorAll(".filterBtn");
-// let im = document.querySelectorAll(".image");
-// console.log(im);
-// im.forEach((el) => {
-//   el.onerror = function () {
-//     console.log(el);
-//     el.src = "./../img/default.jpg";
-//   };
-// });
-
+if (window.location.href.includes("productsWithin"))
+  distValue.value = window.location.href.split(",")[2].split("?")[0];
 addListener();
+let distChange = false;
+distValue.addEventListener("change", () => {
+  distChange = true;
+});
 function showNotification(name, bid, negoStage) {
   var notification = new Notification(" New bid for your Negotiation  ", {
     body: `New bid for The product(${name}) : ₹${bid} `,
@@ -107,7 +104,7 @@ if (negoIds) {
 const a = document.querySelector("#amount");
 if (filterBtn) {
   filterBtn.addEventListener("click", () => {
-    if (distValue.value) withinDistance(distValue.value);
+    if (distValue.value && distChange) withinDistance(distValue.value);
     else filterPrice(a.dataset.startprice, a.dataset.endprice);
   });
 }

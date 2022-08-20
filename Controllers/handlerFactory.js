@@ -3,9 +3,12 @@ const AppError = require("../utils/appError");
 const APIFeatures = require("../utils/apiFeatures");
 const Buyer = require("../Models/buyerModel");
 const Seller = require("../Models/sellerModel");
+const FarmSeller = require("../Models/farmSellerModel");
 
 const setUser = (req, res) => {
-  return res.locals.user == "buyer" ? Buyer : Seller;
+  if (res.locals.user == "buyer") return Buyer;
+  else if (res.locals.user == "seller") return Seller;
+  else return FarmSeller;
 };
 exports.deleteOne = (Model) =>
   catchAsync(async (req, res, next) => {
@@ -79,7 +82,9 @@ exports.getOne = (Model, popOptions) =>
 
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
+    console.log(Model);
     if (!Model) Model = setUser(req, res);
+
     // To allow for nested GET reviews on tour (hack)
     let filter = {};
     if (req.params.tourId) filter = { tour: req.params.tourId };

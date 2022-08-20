@@ -1,5 +1,6 @@
 const Buyer = require("../Models/buyerModel");
 const Seller = require("../Models/sellerModel");
+const FarmSeller = require("../Models/farmSellerModel");
 const Product = require("../Models/productModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
@@ -8,7 +9,9 @@ const mongoose = require("mongoose");
 const ObjectId = require("mongodb").ObjectID;
 let User;
 const setUser = (res) => {
-  User = res.locals.user == "buyer" ? Buyer : Seller;
+  if (res.locals.user == "buyer") User = Buyer;
+  else if (res.locals.user == "seller") User = Seller;
+  else User = FarmSeller;
 };
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
@@ -41,15 +44,16 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   let updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
     runValidators: true,
   });
-  const temp = req.body.location.coordinates[0];
-  req.body.location.coordinates[0] = req.body.location.coordinates[1];
-  req.body.location.coordinates[1] = temp;
+  if (req.body.location) {
+    const temp = req.body.location.coordinates[0];
+    req.body.location.coordinates[0] = req.body.location.coordinates[1];
+    req.body.location.coordinates[1] = temp;
 
-  updatedUser = await User.findByIdAndUpdate(req.user.id, {
-    location: req.body.location,
-  });
+    updatedUser = await User.findByIdAndUpdate(req.user.id, {
+      location: req.body.location,
+    });
+  }
 
-  console.log(this.updateUser);
   // Yes, it's a valid ObjectId, proceed with `findById` call.
 
   res.status(200).json({
@@ -70,6 +74,7 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 exports.getUser = factory.getOne(User);
+
 exports.getAllUsers = factory.getAll(User);
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
