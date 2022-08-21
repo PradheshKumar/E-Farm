@@ -34,7 +34,7 @@ export const login = async (email, password) => {
             location.assign(`/product/${window.location.search.slice(6)}`);
           else location.assign("/");
         } else {
-          location.assign("/seller_products");
+          location.assign("/farmOverview");
         }
       }, 200);
     }

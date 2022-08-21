@@ -4644,7 +4644,7 @@ var login = /*#__PURE__*/function () {
                 if (!window.location.href.includes("seller")) {
                   if (window.location.search.includes("prod")) location.assign("/product/".concat(window.location.search.slice(6)));else location.assign("/");
                 } else {
-                  location.assign("/seller_products");
+                  location.assign("/farmOverview");
                 }
               }, 200);
             }
