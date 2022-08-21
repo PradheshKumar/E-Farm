@@ -41,18 +41,19 @@ block content
                                             a(href=`/viewOrder/${order.id}`)= `₹ ${order.totalPrice}`
                                         td.thumbnail-img
                                             a(href=`/viewOrder/${order.id}`)= order.estimateDelivery.toString().slice(4,16)
-                                each order,i in user.farmOrders
-                                    tr.cartProducts
-                                        td.thumbnail-img
-                                            a(href=`/viewOrder/${order.id}`)= i+1
-                                        td.thumbnail-img
-                                            a(href=`/viewOrder/${order.id}`)= (order.createdAt).toString().slice(4,16)
-                                        td.thumbnail-img
-                                            if(order.products.length ==1 )
-                                                a(href=`/viewOrder/${order.id}`)= order.products[0].name
-                                            else
-                                                a(href=`/viewOrder/${order.id}`)= `${order.products[0].name} and ${order.products.length-1} more products`
-                                        td.thumbnail-img
-                                            a(href=`/viewOrder/${order.id}`)= `₹ ${order.totalPrice}`
-                                        td.thumbnail-img
-                                            a(href=`/viewOrder/${order.id}`)= order.estimateDelivery.toString().slice(4,16)
+                                if(user.farmOrders)
+                                    each order,i in user.farmOrders
+                                        tr.cartProducts
+                                            td.thumbnail-img
+                                                a(href=`/viewOrder/${order.id}`)= i+1
+                                            td.thumbnail-img
+                                                a(href=`/viewOrder/${order.id}`)= (order.createdAt).toString().slice(4,16)
+                                            td.thumbnail-img
+                                                if(order.products.length ==1 )
+                                                    a(href=`/viewOrder/${order.id}`)= order.products[0].name
+                                                else
+                                                    a(href=`/viewOrder/${order.id}`)= `${order.products[0].name} and ${order.products.length-1} more products`
+                                            td.thumbnail-img
+                                                a(href=`/viewOrder/${order.id}`)= `₹ ${order.totalPrice}`
+                                            td.thumbnail-img
+                                                a(href=`/viewOrder/${order.id}`)= order.estimateDelivery.toString().slice(4,16)
