@@ -1,0 +1,62 @@
+{
+  "images": ["farm/tomato1.jpg", "farm/tomato2.jpg", "farm/tomato3.jpg"],
+  "name": "Tomato Seed",
+  "price": 60,
+  "summary": "The tomato is the edible berry of the plant Solanum lycopersicum",
+  "quantity": 50,
+  "type": "seed",
+  "stockLeft": 160
+}
+{
+  "images": ["farm/onion1.jpg", "farm/onion2.jpg", "farm/onion3.jpg"],
+  "name": "Onion Seed",
+  "price": 180,
+  "summary": "The germination rate of these farm is very good. Generally farm are sown on the bed and a very thin layer of soil is applied on them to cover. Watering should be done just to keep the soil wet. (Heavy watering should be avoided) Within a week farm start germinating. ",
+  "quantity": 200,
+  "type": "seed",
+  "stockLeft": 89
+}
+{
+  "images": ["farm/wheat1.jpg", "farm/wheat2.jpg", "farm/wheat3.jpg"],
+  "name": "Wheat Seed",
+  "price": 100,
+  "summary": "Wheat is a grass widely cultivated for its seed, a cereal grain that is a worldwide staple food.[2][3][4] The many species of wheat together make up the genus Triticum; the most widely grown is common wheat (T. aestivum). The archaeological record suggests that wheat was first cultivated in the regions of the Fertile Crescent around 9600 BCE.",
+  "quantity": 1000,
+  "type": "seed",
+  "stockLeft": 160
+}
+{
+  "images": ["farm/sickle1.jpg", "farm/sickle2.jpg", "farm/sickle3.jpg"],
+  "name": "Sickle",
+  "price": 250,
+  "summary": "The Single-Edge Sickle is one of the most ancient of harvesting tools. It is a superior quality tool used to cut grass or harvest crops very easily. It features a wooden handle which is provided for a firm grip and allows the user to complete their task with speed and efficiency.",
+  "type": "tool",
+  "stockLeft": 90
+}
+{
+  "images": ["farm/shovel1.jpg", "farm/shovel2.jpg", "farm/shovel3.jpg"],
+  "name": "Shovel",
+  "price": 600,
+  "summary": "A shovel is a tool for digging, lifting, and moving bulk materials, such as soil, coal, gravel, snow, sand, or ore.",
+ 
+  "type": "tool",
+  "stockLeft": 32
+}
+{
+  "images": ["farm/hedgeshears1.jpg", "farm/hedgeshears2.jpg", "farm/hedgeshears3.jpg"],
+  "name": "Hedge Shears",
+  "price": 350,
+  "summary": "It is a gardening tool or machine used for trimming (cutting, pruning) hedges or solitary shrubs (bushes). Different designs as well as manual and powered versions of hedge trimmers exist.",
+  
+  "type": "tool",
+  "stockLeft": 37
+}
+{
+  "images": ["farm/", "farm/", "farm/"],
+  "name": "Tomato Seed",
+  "price": 60,
+  "summary": "The tomato is the edible berry of the plant Solanum lycopersicum, comm…",
+  "quantity": 50,
+  "type": "seed",
+  "stockLeft": 160
+}

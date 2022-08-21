@@ -65,6 +65,7 @@ const farmProductSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    rentPrice: Number,
   },
   {
     toJSON: { virtuals: true },
