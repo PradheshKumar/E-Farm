@@ -65,7 +65,7 @@ block content
                     if(user)
                       button.btn.hvr-hover.cartBtn(data-fancybox-close='') Add to cart
                       if(products[0].rent)
-                        button(style="margin-left: 20px").btn.hvr-hover Take For Rent  
+                        a(href=`/rent/${products[0].id}` style="margin-left: 20px").btn.hvr-hover Take For Rent  
                     else
                       a(href=`/seller-login?prod=${products[0].id}`).btn.hvr-hover.cartBtn Login to add to Cart
                       if(products[0].rent)
@@ -92,7 +92,7 @@ block content
               if((products[0].seller._doc.rating - Math.floor(products[0].seller._doc.rating)) != 0 )
                 i.fas.fa-star-half-alt
               
-              span= ` (${products[0].seller._doc.rating})`
+              span= ` ( ${products[0].seller._doc.rating?products[0].seller._doc.rating:"0"})`
             .sellerMail.text-right 
               i.fa.fa-address-card
               span=  `  Contact : ${products[0].seller.email} `

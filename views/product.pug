@@ -88,7 +88,7 @@ block content
               if((products[0].seller._doc.rating - Math.floor(products[0].seller._doc.rating)) != 0 )
                 i.fas.fa-star-half-alt
               
-              span= ` (${products[0].seller._doc.rating})`
+              span= ` ( ${products[0].seller._doc.rating?products[0].seller._doc.rating:"0"})`
             .sellerMail.text-right 
               i.fa.fa-address-card
               span=  `  Contact : ${products[0].seller.email} `

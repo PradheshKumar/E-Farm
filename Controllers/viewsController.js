@@ -313,3 +313,14 @@ exports.getfarmOverview = catchAsync(async (req, res, next) => {
     products,
   });
 });
+exports.getRentPage = catchAsync(async (req, res, next) => {
+  // 1) Get product data from collections
+
+  // const doc = await features.query.explain();
+  const User = await Buyer.findById(req.params.id); // 2) Build template
+  // 3) Render that template using product data from 1)
+  res.status(200).render("checkout", {
+    title: "CheckOut",
+    User,
+  });
+});

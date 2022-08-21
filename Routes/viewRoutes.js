@@ -130,6 +130,12 @@ router.get(
   viewsController.sellerAddProduct
 );
 router.get(
+  "/rent/:id",
+  authController.isLoggedIn,
+  allowSeller,
+  viewsController.getRentPage
+);
+router.get(
   "/seller_negotiate",
   authController.isLoggedIn,
   viewsController.sellergetNegotiations
