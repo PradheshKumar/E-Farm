@@ -6775,9 +6775,12 @@ var distValue = document.querySelector(".distValue");
 if (window.location.href.includes("productsWithin")) distValue.value = window.location.href.split(",")[2].split("?")[0];
 (0, _checkOut.addListener)();
 var distChange = false;
-distValue.addEventListener("change", function () {
-  distChange = true;
-});
+
+if (distValue) {
+  distValue.addEventListener("change", function () {
+    distChange = true;
+  });
+}
 
 function showNotification(name, bid, negoStage) {
   var notification = new Notification(" New bid for your Negotiation  ", {
@@ -7027,7 +7030,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50041" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56366" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

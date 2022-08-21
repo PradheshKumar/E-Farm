@@ -55,9 +55,11 @@ if (window.location.href.includes("productsWithin"))
   distValue.value = window.location.href.split(",")[2].split("?")[0];
 addListener();
 let distChange = false;
-distValue.addEventListener("change", () => {
-  distChange = true;
-});
+if (distValue) {
+  distValue.addEventListener("change", () => {
+    distChange = true;
+  });
+}
 function showNotification(name, bid, negoStage) {
   var notification = new Notification(" New bid for your Negotiation  ", {
     body: `New bid for The product(${name}) : ₹${bid} `,

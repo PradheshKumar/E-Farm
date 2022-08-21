@@ -60,6 +60,11 @@ router.get(
   authController.isLoggedIn,
   viewsController.getProduct
 );
+router.get(
+  "/farmProduct/:fid",
+  authController.isLoggedIn,
+  viewsController.getProduct
+);
 router.get("/productsWithin/:latlngDist", viewsController.withinRange);
 router.get("/farmProductsWithin/:latlgDist", viewsController.withinRange);
 router.get("/login", viewsController.getLoginForm);

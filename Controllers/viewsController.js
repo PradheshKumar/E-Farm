@@ -3,6 +3,7 @@ const FarmProduct = require("../Models/farmProductModel");
 const Order = require("../Models/orderModel");
 const Buyer = require("../Models/buyerModel");
 const Seller = require("../Models/sellerModel");
+const FarmSeller = require("../Models/farmSellerModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const APIFeatures = require("../utils/apiFeatures");
@@ -180,32 +181,40 @@ exports.getNegotiations = catchAsync(async (req, res, next) => {
   });
 });
 exports.getProduct = catchAsync(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
-
+  const Model = req.params.fid ? FarmProduct : Product;
+  const SellerModel = req.params.fid ? FarmSeller : Seller;
+  if (req.params.fid) req.params.id = req.params.fid;
+  const product = await Model.findById(req.params.id);
   const sellerProd1 = (
-    await Seller.findById(product.seller.id).populate({
+    await SellerModel.findById(product.seller.id).populate({
       path: "product",
       select: "id -seller",
     })
   ).product;
 
   const sellerProd = sellerProd1.map((el) => el.id);
-  console.log(sellerProd);
-  let sellerProds = await Product.find({
+  let sellerProds = await Model.find({
     _id: sellerProd,
   });
+
   product.seller._doc.products = sellerProds;
-  let products = await Product.find({
+  let products = await Model.find({
     _id: { $ne: req.params.id },
   });
   products = [product, products];
   if (!product)
     return next(new AppError("There is no product with that id", 404));
-
-  res.status(200).render("product", {
-    title: product.name,
-    products,
-  });
+  if (!req.params.fid) {
+    res.status(200).render("product", {
+      title: product.name,
+      products,
+    });
+  } else {
+    res.status(200).render("farmproduct", {
+      title: product.name,
+      products,
+    });
+  }
 });
 exports.searchProduct = catchAsync(async (req, res, next) => {
   const products = await Product.find({

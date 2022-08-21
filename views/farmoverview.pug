@@ -54,12 +54,12 @@ block content
                             .mask-icon
                               ul
                                 li
-                                  a(href=`/product/${prod.id}` data-toggle='tooltip' data-placement='right' title='View')
+                                  a(href=`/farmProduct/${prod.id}` data-toggle='tooltip' data-placement='right' title='View')
                                     i.fas.fa-eye
                                 
-                              a.cart(href=`/product/${prod.id}`) Add to Cart
+                              a.cart(href=`/farmProduct/${prod.id}`) Add to Cart
                           .why-text
-                            a(href=`/product/${prod.id}`)
+                            a(href=`/farmProduct/${prod.id}`)
                               h4= prod.name
                               h5= `₹ ${prod.price}`
                 if(products.length==0)
@@ -78,17 +78,17 @@ block content
                               .mask-icon
                                 ul
                                   li
-                                    a(href=`/product/${prod.id}` data-toggle='tooltip' data-placement='right' title='View')
+                                    a(href=`/farmProduct/${prod.id}` data-toggle='tooltip' data-placement='right' title='View')
                                       i.fas.fa-eye
                                   
                         .col-sm-6.col-md-6.col-lg-8.col-xl-8
-                          a(href=`/product/${prod.id}`)
+                          a(href=`/farmProduct/${prod.id}`)
                             .why-text.full-width
                             
                               h4= prod.name
                               h5= `₹ ${prod.price}`
                               h6= prod.summary
-                              a.btn.hvr-hover(href=`/product/${prod.id}`) Add to Cart
+                              a.btn.hvr-hover(href=`/farmProduct/${prod.id}`) Add to Cart
 
         .col-xl-3.col-lg-3.col-sm-12.col-xs-12.sidebar-shop-left
           .product-categori
@@ -114,13 +114,7 @@ block content
                   | Fertilizer 
                 a.list-group-item.list-group-item-action(href='?rent=true')
                   | Rentable 
-            .filter-price-left
-              .title-left
-                h3 Price
-              .price-box-slider
-                #slider-range
-                p
-                  input#amount.priceTxtOverview(type='text' readonly='' )
+            
                   
             .filter-price-left
               .title-left
