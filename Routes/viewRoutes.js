@@ -35,12 +35,7 @@ router.get(
   authController.isLoggedIn,
   viewsController.getfarmOverview
 );
-router.get(
-  "/myCart",
-  authController.isLoggedIn,
-  allowBuyer,
-  viewsController.getCart
-);
+router.get("/myCart", authController.isLoggedIn, viewsController.getCart);
 router.get(
   "/checkOut",
   authController.isLoggedIn,

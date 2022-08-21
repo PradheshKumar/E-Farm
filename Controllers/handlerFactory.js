@@ -82,7 +82,6 @@ exports.getOne = (Model, popOptions) =>
 
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
-    console.log(Model);
     if (!Model) Model = setUser(req, res);
 
     // To allow for nested GET reviews on tour (hack)

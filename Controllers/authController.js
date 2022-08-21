@@ -217,7 +217,6 @@ exports.isLoggedIn = async (req, res, next) => {
       currentUser.products = await Product.find({ seller: currentUser.id });
       // THERE IS A LOGGED IN USER
       currentUser.role = "seller";
-      console.log(currentUser.products);
       res.locals.user = currentUser;
 
       return next();
@@ -259,7 +258,6 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     const resetURL = `${req.protocol}://${req.get(
       "host"
     )}/resetPassword/${resetToken}`;
-    console.log(user);
     await new Email(user, resetURL).sendPasswordReset();
 
     res.status(200).json({

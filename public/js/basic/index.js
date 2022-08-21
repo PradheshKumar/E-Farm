@@ -173,15 +173,15 @@ if (qtyInput) {
       subTotal.innerHTML = `₹ ${sum}`;
       tax.innerHTML = `₹ ${Math.floor(sum * 0.05)}`;
       grandTotal.innerHTML = `₹ ${sum + Math.floor(sum * 0.05)}`;
-      updateCart(e.dataset.prodid, e.value);
+      updateCart(e.dataset.prodid, e.value, e.dataset.role);
     });
   });
 }
 if (rmBtn) {
   rmBtn.forEach((el, i) => {
     el.addEventListener("click", () => {
+      rmCart(i, el.parentElement.childNodes[3].childNodes[0].dataset.role);
       el.parentElement.remove();
-      rmCart(i);
     });
   });
 }

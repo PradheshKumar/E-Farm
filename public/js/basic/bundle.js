@@ -4860,7 +4860,7 @@ var addToCart = /*#__PURE__*/function () {
 exports.addToCart = addToCart;
 
 var rmCart = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id, role) {
     var res, cart;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) {
@@ -4870,7 +4870,7 @@ var rmCart = /*#__PURE__*/function () {
             _context5.next = 3;
             return (0, _axios.default)({
               method: "PATCH",
-              url: "/api/v1/buyer/rmCart/".concat(id)
+              url: "/api/v1/".concat(role, "/rmCart/").concat(id)
             });
 
           case 3:
@@ -4900,7 +4900,7 @@ var rmCart = /*#__PURE__*/function () {
     }, _callee5, null, [[0, 7]]);
   }));
 
-  return function rmCart(_x9) {
+  return function rmCart(_x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
@@ -4955,7 +4955,7 @@ var addNego = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 7]]);
   }));
 
-  return function addNego(_x10, _x11, _x12, _x13) {
+  return function addNego(_x11, _x12, _x13, _x14) {
     return _ref6.apply(this, arguments);
   };
 }();
@@ -5005,7 +5005,7 @@ var acceptNego = /*#__PURE__*/function () {
     }, _callee7, null, [[0, 8]]);
   }));
 
-  return function acceptNego(_x14) {
+  return function acceptNego(_x15) {
     return _ref7.apply(this, arguments);
   };
 }();
@@ -5054,7 +5054,7 @@ var cancelNego = /*#__PURE__*/function () {
     }, _callee8, null, [[0, 7]]);
   }));
 
-  return function cancelNego(_x15) {
+  return function cancelNego(_x16) {
     return _ref8.apply(this, arguments);
   };
 }();
@@ -5107,7 +5107,7 @@ var replyNego = /*#__PURE__*/function () {
     }, _callee9, null, [[0, 7]]);
   }));
 
-  return function replyNego(_x16, _x17) {
+  return function replyNego(_x17, _x18) {
     return _ref9.apply(this, arguments);
   };
 }();
@@ -5257,7 +5257,7 @@ var updateDetails = /*#__PURE__*/function () {
     }, _callee11, null, [[1, 14]]);
   }));
 
-  return function updateDetails(_x18) {
+  return function updateDetails(_x19) {
     return _ref11.apply(this, arguments);
   };
 }();
@@ -5337,7 +5337,7 @@ var updatePassword = /*#__PURE__*/function () {
     }, _callee12, null, [[1, 14]]);
   }));
 
-  return function updatePassword(_x19, _x20, _x21) {
+  return function updatePassword(_x20, _x21, _x22) {
     return _ref12.apply(this, arguments);
   };
 }();
@@ -5419,7 +5419,7 @@ var resetPassFn = /*#__PURE__*/function () {
     }, _callee13, null, [[1, 15]]);
   }));
 
-  return function resetPassFn(_x22, _x23, _x24) {
+  return function resetPassFn(_x23, _x24, _x25) {
     return _ref13.apply(this, arguments);
   };
 }();
@@ -5432,7 +5432,7 @@ function showValidate(input) {
 }
 
 var updateCart = /*#__PURE__*/function () {
-  var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(prodId, qty) {
+  var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(prodId, qty, role) {
     var res;
     return _regeneratorRuntime().wrap(function _callee14$(_context14) {
       while (1) {
@@ -5442,7 +5442,7 @@ var updateCart = /*#__PURE__*/function () {
             _context14.next = 3;
             return (0, _axios.default)({
               method: "PATCH",
-              url: "/api/v1/buyer/updateCart/".concat(prodId, "/").concat(qty)
+              url: "/api/v1/".concat(role, "/updateCart/").concat(prodId, "/").concat(qty)
             });
 
           case 3:
@@ -5471,7 +5471,7 @@ var updateCart = /*#__PURE__*/function () {
     }, _callee14, null, [[0, 7]]);
   }));
 
-  return function updateCart(_x25, _x26) {
+  return function updateCart(_x26, _x27, _x28) {
     return _ref14.apply(this, arguments);
   };
 }();
@@ -5549,7 +5549,7 @@ var filterPrice = /*#__PURE__*/function () {
     }, _callee16);
   }));
 
-  return function filterPrice(_x27, _x28) {
+  return function filterPrice(_x29, _x30) {
     return _ref16.apply(this, arguments);
   };
 }();
@@ -5574,7 +5574,7 @@ var withinDistance = /*#__PURE__*/function () {
     }, _callee17);
   }));
 
-  return function withinDistance(_x29) {
+  return function withinDistance(_x31) {
     return _ref17.apply(this, arguments);
   };
 }();
@@ -6899,7 +6899,7 @@ if (qtyInput) {
       subTotal.innerHTML = "\u20B9 ".concat(sum);
       tax.innerHTML = "\u20B9 ".concat(Math.floor(sum * 0.05));
       grandTotal.innerHTML = "\u20B9 ".concat(sum + Math.floor(sum * 0.05));
-      (0, _ApiCalls.updateCart)(e.dataset.prodid, e.value);
+      (0, _ApiCalls.updateCart)(e.dataset.prodid, e.value, e.dataset.role);
     });
   });
 }
@@ -6907,8 +6907,8 @@ if (qtyInput) {
 if (rmBtn) {
   rmBtn.forEach(function (el, i) {
     el.addEventListener("click", function () {
+      (0, _ApiCalls.rmCart)(i, el.parentElement.childNodes[3].childNodes[0].dataset.role);
       el.parentElement.remove();
-      (0, _ApiCalls.rmCart)(i);
     });
   });
 }

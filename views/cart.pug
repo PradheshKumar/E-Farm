@@ -25,7 +25,8 @@ block content
                                     th Price
                                     th Quantity
                                     th Total
-                                    th Negotiate
+                                    if(user.role!="seller")
+                                        th Negotiate
                                     th Remove
                             tbody
                                 each prod,i in user.cart
@@ -38,12 +39,13 @@ block content
                                         td.price-pr
                                             p= `₹ ${prod.price}`
                                         td.quantity-box
-                                            input.qtyInput.c-input-text.qty.text(type='number' size='4' value=user.cartQty[i] min='1' max=prod.stockLeft step='1' data-price=prod.price data-id=i data-prodid=prod.id)
+                                            input.qtyInput.c-input-text.qty.text(type='number' size='4' value=user.cartQty[i] min='1' max=prod.stockLeft step='1' data-price=prod.price data-id=i data-role =user.role data-prodid=prod.id)
                                         td.total-pr
                                             p.prodPrice= `₹ ${prod.price*user.cartQty[i]} `
                                             - sum += prod.price*user.cartQty[i]
-                                        td.remove-pr
-                                            a(href='#' data-id=prod.id data-buyer=user.id data-price=prod.price data-qty = user.cartQty[i]).negoBtn Negotiate?
+                                        if(user.role!="seller")
+                                            td.remove-pr
+                                                a(href='#' data-id=prod.id data-buyer=user.id data-price=prod.price data-qty = user.cartQty[i]).negoBtn Negotiate?
                                         td.remove-pr.rmBtn
                                             a(href='#')
                                             i.fas.fa-times

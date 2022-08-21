@@ -120,11 +120,11 @@ export const addToCart = async (prodId) => {
     }
   return true;
 };
-export const rmCart = async (id) => {
+export const rmCart = async (id, role) => {
   try {
     const res = await axios({
       method: "PATCH",
-      url: `/api/v1/buyer/rmCart/${id}`,
+      url: `/api/v1/${role}/rmCart/${id}`,
     });
     if (res.data.status === "success") {
       const cart = document.querySelector(".cartProducts");
@@ -366,11 +366,11 @@ function showValidate(input) {
   var thisAlert = $(input);
   $(thisAlert).addClass("alert-validate");
 }
-export const updateCart = async (prodId, qty) => {
+export const updateCart = async (prodId, qty, role) => {
   try {
     const res = await axios({
       method: "PATCH",
-      url: `/api/v1/buyer/updateCart/${prodId}/${qty}`,
+      url: `/api/v1/${role}/updateCart/${prodId}/${qty}`,
     });
     if (res.data.status === "success") {
       // addCartBtn.parentElement.innerHTML = "ADDED";
