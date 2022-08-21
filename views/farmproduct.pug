@@ -41,8 +41,9 @@ block content
           .single-product-details
             h2= products[0].name
             h5= `₹ ${products[0].price}`
-            h4 Rent Price:
-            h5= `₹ ${products[0].rentPrice}  /day` 
+            if(products[0].rent)
+              h4 Rent Price:
+              h5= `₹ ${products[0].rentPrice}  /day` 
             p.available-stock
               span= `${products[0].stockLeft} available in stock`
             p
@@ -64,7 +65,7 @@ block content
                     if(user)
                       button.btn.hvr-hover.cartBtn(data-fancybox-close='') Add to cart
                       if(products[0].rent)
-                        a(href=`/seller-login?prod=${products[0].id}` style="margin-left: 20px").btn.hvr-hover Take For Rent  
+                        button(style="margin-left: 20px").btn.hvr-hover Take For Rent  
                     else
                       a(href=`/seller-login?prod=${products[0].id}`).btn.hvr-hover.cartBtn Login to add to Cart
                       if(products[0].rent)

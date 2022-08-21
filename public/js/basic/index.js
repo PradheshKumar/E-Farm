@@ -141,7 +141,6 @@ if (loginBtn) {
     }
   });
 }
-console.log(logoutBtn);
 if (logoutBtn) {
   logoutBtn.addEventListener("click", logout);
 }

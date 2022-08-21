@@ -73,6 +73,13 @@ const sellerSchema = new mongoose.Schema(
         ref: "Negotiation",
       },
     ],
+    cart: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "FarmProduct",
+      },
+    ],
+    cartQty: [Number],
   },
   {
     toJSON: { virtuals: true },

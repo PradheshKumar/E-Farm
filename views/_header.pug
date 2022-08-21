@@ -97,7 +97,7 @@ header.main-header
                     if prod.costPer == "1/4kg"
                       p= `${user.cartQty[i]/4} kg` 
                     else
-                      p= `${user.cartQty[i]}  ${prod.costPer}`
+                      p= `${user.cartQty[i]} ${prod.costPer?prod.costPer:" units"}`
                     span= `₹ ${user.cartQty[i]*prod.price}`
                     - a = a + user.cartQty[i]*prod.price
                 li.total

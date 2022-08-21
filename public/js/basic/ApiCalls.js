@@ -106,7 +106,9 @@ export const addToCart = async (prodId) => {
     try {
       const res = await axios({
         method: "POST",
-        url: `/api/v1/buyer/addCart/${prodId}/${qty}`,
+        url: `/api/v1/${
+          window.location.href.includes("farm") ? "seller" : "buyer"
+        }/addCart/${prodId}/${qty}`,
       });
       if (res.data.status === "success") {
         addCartBtn.parentElement.innerHTML = "ADDED";

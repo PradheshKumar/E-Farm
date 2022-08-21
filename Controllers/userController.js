@@ -81,13 +81,17 @@ exports.deleteUser = factory.deleteOne(User);
 
 exports.addToCart = catchAsync(async (req, res, next) => {
   try {
-    console.log("1");
     setUser(res);
     const buyer = await User.findById(req.user.id);
     let cart,
       cartQty,
       flag = 0,
       index;
+    if (!buyer.cart) {
+      buyer.cart = [];
+      buyer.cartQty = [];
+    }
+
     buyer.cart.every((el, i) => {
       if (el == req.params.id) {
         flag = 1;
@@ -96,7 +100,6 @@ exports.addToCart = catchAsync(async (req, res, next) => {
       }
       return true;
     });
-    console.log("2");
     if (flag == 0) {
       cart = [...buyer.cart, req.params.id];
       cartQty = [...buyer.cartQty, req.params.qty];
@@ -110,7 +113,6 @@ exports.addToCart = catchAsync(async (req, res, next) => {
       cart,
       cartQty,
     });
-    console.log("3");
     res.status(200).json({
       status: "success",
       data: {

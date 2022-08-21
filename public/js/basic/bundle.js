@@ -4822,7 +4822,7 @@ var addToCart = /*#__PURE__*/function () {
             _context4.next = 5;
             return (0, _axios.default)({
               method: "POST",
-              url: "/api/v1/buyer/addCart/".concat(prodId, "/").concat(qty)
+              url: "/api/v1/".concat(window.location.href.includes("farm") ? "seller" : "buyer", "/addCart/").concat(prodId, "/").concat(qty)
             });
 
           case 5:
@@ -6863,8 +6863,6 @@ if (loginBtn) {
     }
   });
 }
-
-console.log(logoutBtn);
 
 if (logoutBtn) {
   logoutBtn.addEventListener("click", _ApiCalls.logout);

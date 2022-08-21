@@ -4,6 +4,7 @@ const authController = require("../Controllers/authController");
 const router = express.Router();
 const setUser = (req, res, next) => {
   res.locals.user = "seller";
+  console.log("SSSSSSSSSSS");
   next();
 };
 router.get(
@@ -19,8 +20,9 @@ router.post("/forgotPassword", setUser, authController.forgotPassword);
 router.patch("/resetPassword/:token", setUser, authController.resetPassword);
 router.route("/").get(setUser, userController.getAllUsers);
 // Protect all routes after this middleware
-router.use(authController.protect);
+router.use(setUser, authController.protect);
 
+router.post("/addCart/:id/:qty", setUser, userController.addToCart);
 router.patch("/updateMyPassword", setUser, authController.updatePassword);
 router.get("/me", setUser, userController.getMe, userController.getUser);
 router.patch("/updateMe", setUser, userController.updateMe);
