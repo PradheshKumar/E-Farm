@@ -23,17 +23,15 @@ function allowBuyer(req, res, next) {
   if (res.locals.user == null) next();
 }
 function allowSeller(req, res, next) {
-  if (res.locals.user) {
-    if (res.locals.user.role != "seller") {
-      res.status(401).redirect("/");
-      // .json({
-      //   status: "Permission denied",
-      //   message: "Your Are Not allowed to use this route . Redirecting....",
-      // });
-    } else next();
-  }
-  if (res.locals.user == null) next();
+  if (!res.locals.user || res.locals.user.role != "seller") {
+    res.status(401).redirect("/");
+    // .json({
+    //   status: "Permission denied",
+    //   message: "Your Are Not allowed to use this route . Redirecting....",
+    // });
+  } else next();
 }
+
 router.get(
   "/",
   authController.isLoggedIn,
