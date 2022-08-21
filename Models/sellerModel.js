@@ -47,6 +47,12 @@ const sellerSchema = new mongoose.Schema(
         ref: "Order",
       },
     ],
+    farmOrders: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "FarmOrder",
+      },
+    ],
     passwordConfirm: {
       type: String,
       required: [true, "Please confirm your password"],

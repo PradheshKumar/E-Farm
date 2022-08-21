@@ -1,6 +1,7 @@
 const Product = require("../Models/productModel");
 const FarmProduct = require("../Models/farmProductModel");
 const Order = require("../Models/orderModel");
+const FarmOrder = require("../Models/farmOrderModel");
 const Buyer = require("../Models/buyerModel");
 const Seller = require("../Models/sellerModel");
 const FarmSeller = require("../Models/farmSellerModel");
@@ -237,8 +238,12 @@ exports.searchFarmProduct = catchAsync(async (req, res, next) => {
   });
 });
 exports.getOrderPlaced = catchAsync(async (req, res, next) => {
-  const order = await Order.findById(req.params.id).populate("products");
-  const products = await Product.find();
+  let order = await Order.findById(req.params.id).populate("products");
+  let products;
+  if (!order) {
+    order = await FarmOrder.findById(req.params.id).populate("products");
+    products = await FarmProduct.find();
+  } else products = await Product.find();
   res.status(200).render("order_placed", {
     title: "Order placed successfully",
     products,
@@ -246,8 +251,12 @@ exports.getOrderPlaced = catchAsync(async (req, res, next) => {
   });
 });
 exports.viewOrder = catchAsync(async (req, res, next) => {
-  const products = await Product.find();
-  const order = await Order.findById(req.params.id).populate("products");
+  let products = await Product.find();
+  let order = await Order.findById(req.params.id).populate("products");
+  if (!order) {
+    order = await FarmOrder.findById(req.params.id).populate("products");
+    products = await FarmProduct.find();
+  }
   res.status(200).render("order_view", {
     title: "Your Order",
     products,

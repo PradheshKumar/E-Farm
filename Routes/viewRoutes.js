@@ -13,7 +13,7 @@ const setUser = (req, res, next) => {
 function allowBuyer(req, res, next) {
   if (res.locals.user) {
     if (res.locals.user.role == "seller") {
-      res.status(401).redirect("/seller_products");
+      res.status(401).redirect("/farmOverview");
       // .json({
       //   status: "Permission denied",
       //   message: "Your Are Not allowed to use this route . Redirecting....",
@@ -25,7 +25,7 @@ function allowBuyer(req, res, next) {
 router.get(
   "/",
   authController.isLoggedIn,
-
+  allowBuyer,
   viewsController.getIndex
 );
 router.get("/aboutUs", authController.isLoggedIn, viewsController.getAbout);
@@ -36,12 +36,7 @@ router.get(
   viewsController.getfarmOverview
 );
 router.get("/myCart", authController.isLoggedIn, viewsController.getCart);
-router.get(
-  "/checkOut",
-  authController.isLoggedIn,
-  allowBuyer,
-  viewsController.getCheckOut
-);
+router.get("/checkOut", authController.isLoggedIn, viewsController.getCheckOut);
 router.get("/myOrders", authController.isLoggedIn, viewsController.getOrders);
 router.get(
   "/negotiate",

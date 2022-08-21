@@ -41,10 +41,10 @@ const farmSellerSchema = new mongoose.Schema(
       coordinates: [Number],
       city: String,
     },
-    currentOrders: [
+    farmOrders: [
       {
         type: mongoose.Schema.ObjectId,
-        ref: "Order",
+        ref: "FarmOrder",
       },
     ],
     passwordConfirm: {

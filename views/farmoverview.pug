@@ -71,8 +71,9 @@ block content
                         .col-sm-6.col-md-6.col-lg-4.col-xl-4
                           .products-single.fix
                             .box-img-hover
-                              .type-lb
-                                p.sale Rentable
+                              if(prod.rent)
+                                .type-lb
+                                  p.sale Rentable
                               img.img-fluid(src=`./../img/${prod.images[0]}` alt='Image' onError="this.src = './../img/default.jpg'")
                               
                               .mask-icon

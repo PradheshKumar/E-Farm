@@ -204,6 +204,11 @@ exports.isLoggedIn = async (req, res, next) => {
             "id products productsQty totalPrice -buyer createdAt estimateDelivery",
         })
         .populate({
+          path: "farmOrders",
+          select:
+            "id products productsQty totalPrice -buyer createdAt estimateDelivery",
+        })
+        .populate({
           path: "negotiations",
           select:
             "startingPrice qty product seller createdAt -buyer currentBid negoStage",

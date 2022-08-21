@@ -34,7 +34,7 @@ block content
                                           a(href='#')
                                             img.img-fluid(src=`./../img/${prod.images[0]}` alt='' onError="this.src = './../img/default.jpg'") 
                                       td.name-pr
-                                          a(href=`/product/${prod.id}`)= prod.name
+                                          a(href=`/${user.role=="seller"?"farmProduct":"product"} /${prod.id}`)= prod.name
                                       td.price-pr
                                           p= `₹ ${prod.price}`
                                       td.quantity-box

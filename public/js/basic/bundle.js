@@ -5697,7 +5697,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // const stripe = Stripe("pk_test_BUkd0ZXAj6m0q0jMyRgBxNns00PPtgvjjr");
 var showCheckout = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(orderId) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(orderId, role) {
     var session;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
@@ -5705,7 +5705,7 @@ var showCheckout = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return (0, _axios.default)("/api/v1/order/checkOutPage/".concat(orderId));
+            return (0, _axios.default)("/api/v1/".concat(role == "seller" ? "farmOrder" : "order", "/checkOutPage/").concat(orderId));
 
           case 3:
             session = _context.sent;
@@ -5731,7 +5731,7 @@ var showCheckout = /*#__PURE__*/function () {
     }, _callee, null, [[0, 7]]);
   }));
 
-  return function showCheckout(_x) {
+  return function showCheckout(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -5771,6 +5771,7 @@ var prodId = [],
     prodQty = [],
     pay = 1,
     buyer,
+    role,
     delTime = 400000000;
 
 if (products.length != 0) {
@@ -5781,6 +5782,7 @@ if (products.length != 0) {
     return prodQty.push(e.dataset.qty);
   });
   buyer = products[0].dataset.buyer;
+  role = products[0].dataset.role;
 }
 
 var addListener = function addListener() {
@@ -5796,6 +5798,9 @@ var addListener = function addListener() {
         } else if (e.dataset.id == 3) {
           delTime = 100000000;
           priceTxt.innerHTML = "\u20B9 ".concat(price + 100);
+        } else if (e.dataset.id == 0) {
+          delTime = 0;
+          priceTxt.innerHTML = "\u20B9 ".concat(price);
         }
 
         finalPrice = Number(document.querySelector(".finalPrice").innerHTML.replace("₹", ""));
@@ -5838,7 +5843,7 @@ var placeOrder = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: "POST",
-              url: "/api/v1/order/newOrder",
+              url: "/api/v1/".concat(role == "seller" ? "farmOrder" : "order", "/newOrder"),
               data: {
                 products: prodId,
                 buyer: buyer,
@@ -5852,7 +5857,7 @@ var placeOrder = /*#__PURE__*/function () {
             res = _context.sent;
 
             if (res.data.status === "success") {
-              if (pay == 1) (0, _stripe.showCheckout)(res.data.data.data._id);else window.location.href = "/order_placed/".concat(res.data.data.data._id);
+              if (pay == 1) (0, _stripe.showCheckout)(res.data.data.data._id, role);else window.location.href = "/order_placed/".concat(res.data.data.data._id);
             }
 
             _context.next = 10;
