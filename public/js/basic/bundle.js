@@ -5563,7 +5563,7 @@ var withinDistance = /*#__PURE__*/function () {
         switch (_context17.prev = _context17.next) {
           case 0:
             navigator.geolocation.getCurrentPosition(function (position) {
-              window.location.href = "/productsWithin/".concat(position.coords.latitude, ",").concat(position.coords.longitude, ",").concat(dist);
+              if (!window.location.href.includes("farm")) window.location.href = "/productsWithin/".concat(position.coords.latitude, ",").concat(position.coords.longitude, ",").concat(dist);else window.location.href = "/farmProductsWithin/".concat(position.coords.latitude, ",").concat(position.coords.longitude, ",").concat(dist);
             });
 
           case 1:
@@ -7027,7 +7027,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61459" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50041" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

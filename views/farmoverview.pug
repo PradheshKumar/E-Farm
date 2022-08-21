@@ -59,7 +59,7 @@ block content
                           .why-text
                             a(href=`/product/${prod.id}`)
                               h4= prod.name
-                              h5= `₹ ${prod.price} per ${prod.costPer}`
+                              h5= `₹ ${prod.price}`
                 if(products.length==0)
                   h1 No products found. Try changing filter Options
                 #list-view.tab-pane.fade(role='tabpanel')
@@ -99,16 +99,16 @@ block content
                 h3 Categories
               #list-group-men.list-group.list-group-collapse.list-group-sm.list-group-tree(data-children='.sub-men')
                                                     
-                a.list-group-item.list-group-item-action(href='/overview')
+                a.list-group-item.list-group-item-action(href='/farmOverview')
                   | All  
-                a.list-group-item.list-group-item-action(href='?type=vegetable')
-                  | Vegetables  
-                a.list-group-item.list-group-item-action(href='?type=fruit')
-                  | Fruits 
-                a.list-group-item.list-group-item-action(href='?type=leaf')
-                  | Leafs 
-                a.list-group-item.list-group-item-action(href='?type=crop')
-                  | Crops 
+                a.list-group-item.list-group-item-action(href='?type=seed')
+                  | Seeds  
+                a.list-group-item.list-group-item-action(href='?type=tool')
+                  | Tools 
+                a.list-group-item.list-group-item-action(href='?type=tractor')
+                  | Tractor 
+                a.list-group-item.list-group-item-action(href='?type=fertilizer')
+                  | Fertilizer 
             .filter-price-left
               .title-left
                 h3 Price

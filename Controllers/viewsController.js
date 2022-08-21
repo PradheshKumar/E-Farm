@@ -1,4 +1,5 @@
 const Product = require("../Models/productModel");
+const FarmProduct = require("../Models/farmProductModel");
 const Order = require("../Models/orderModel");
 const Buyer = require("../Models/buyerModel");
 const Seller = require("../Models/sellerModel");
@@ -36,7 +37,11 @@ exports.getOverview = catchAsync(async (req, res, next) => {
 exports.withinRange = catchAsync(async (req, res, next) => {
   //productsWithin/170/center/13.075698238965733, 80.27799744232169
   // const { distance, latlng, unit } = req.params;
-  const [lat, lng, distance] = req.params.latlngDist.split(",");
+  let lat, lng, distance;
+  if (!req.params.latlgDist)
+    [lat, lng, distance] = req.params.latlngDist.split(",");
+  else [lat, lng, distance] = req.params.latlgDist.split(",");
+  const Model = req.params.latlgDist ? FarmProduct : Product;
   const radius = distance / 6378.1;
   if (!lat || !lng) {
     next(
@@ -46,10 +51,11 @@ exports.withinRange = catchAsync(async (req, res, next) => {
       )
     );
   }
-  let products = await Product.find({
+  let products = await Model.find({
     location: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },
   });
-  const features = new APIFeatures(Product.find(), req.query)
+
+  const features = new APIFeatures(Model.find(), req.query)
     .filter()
     .sort()
     .limitFields()
@@ -81,6 +87,7 @@ exports.withinRange = catchAsync(async (req, res, next) => {
   });
   ///////////COPYING SORT
   flag = [];
+
   products.forEach((el) => {
     productsQueried.forEach((el2, i) => {
       if (el.id == el2.id) {
@@ -91,14 +98,20 @@ exports.withinRange = catchAsync(async (req, res, next) => {
   flag = flag.filter((element) => {
     return element !== null && element !== undefined;
   });
-  console.log(flag.length);
+
   products = flag;
   // console.log(flag);
   // console.log(products);
-  res.status(200).render("overview", {
-    title: "E-FARM",
-    products,
-  });
+  if (!req.params.latlgDist)
+    res.status(200).render("overview", {
+      title: "E-FARM",
+      products,
+    });
+  else
+    res.status(200).render("farmOverview", {
+      title: "E-FARM",
+      products,
+    });
 });
 exports.getAccount = catchAsync(async (req, res, next) => {
   // 1) Get product data from collections
@@ -204,6 +217,16 @@ exports.searchProduct = catchAsync(async (req, res, next) => {
     products,
   });
 });
+exports.searchFarmProduct = catchAsync(async (req, res, next) => {
+  const products = await FarmProduct.find({
+    name: { $regex: new RegExp(req.params.key, "i") },
+  });
+
+  res.status(200).render("farmOverview", {
+    title: "E-FARM",
+    products,
+  });
+});
 exports.getOrderPlaced = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.params.id).populate("products");
   const products = await Product.find();
@@ -253,5 +276,22 @@ exports.sellerAddProduct = catchAsync(async (req, res, next) => {
 exports.sellergetNegotiations = catchAsync(async (req, res, next) => {
   res.status(200).render("seller_negotiate", {
     title: "My Negotiations",
+  });
+});
+//////////////////////////////////////////////////////////////
+exports.getfarmOverview = catchAsync(async (req, res, next) => {
+  // 1) Get product data from collections
+  const features = new APIFeatures(FarmProduct.find(), req.query)
+    .filter()
+    .sort()
+    .limitFields()
+    .paginate();
+  // const doc = await features.query.explain();
+  const products = await features.query;
+  // 2) Build template
+  // 3) Render that template using product data from 1)
+  res.status(200).render("farmoverview", {
+    title: "E-FARM",
+    products,
   });
 });

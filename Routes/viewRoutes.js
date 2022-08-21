@@ -31,6 +31,11 @@ router.get(
 router.get("/aboutUs", authController.isLoggedIn, viewsController.getAbout);
 router.get("/overview", authController.isLoggedIn, viewsController.getOverview);
 router.get(
+  "/farmOverview",
+  authController.isLoggedIn,
+  viewsController.getfarmOverview
+);
+router.get(
   "/myCart",
   authController.isLoggedIn,
   allowBuyer,
@@ -56,6 +61,7 @@ router.get(
   viewsController.getProduct
 );
 router.get("/productsWithin/:latlngDist", viewsController.withinRange);
+router.get("/farmProductsWithin/:latlgDist", viewsController.withinRange);
 router.get("/login", viewsController.getLoginForm);
 router.get(
   "/search/:key",
@@ -63,6 +69,12 @@ router.get(
   authController.isLoggedIn,
   allowBuyer,
   viewsController.searchProduct
+);
+router.get(
+  "/farmSearch/:key",
+
+  authController.isLoggedIn,
+  viewsController.searchFarmProduct
 );
 
 router.get(

@@ -426,6 +426,9 @@ export const filterPrice = async (start, end) => {
 };
 export const withinDistance = async (dist) => {
   navigator.geolocation.getCurrentPosition((position) => {
-    window.location.href = `/productsWithin/${position.coords.latitude},${position.coords.longitude},${dist}`;
+    if (!window.location.href.includes("farm"))
+      window.location.href = `/productsWithin/${position.coords.latitude},${position.coords.longitude},${dist}`;
+    else
+      window.location.href = `/farmProductsWithin/${position.coords.latitude},${position.coords.longitude},${dist}`;
   });
 };

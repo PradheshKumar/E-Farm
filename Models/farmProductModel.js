@@ -34,7 +34,7 @@ const farmProductSchema = new mongoose.Schema(
       type: Number,
       required: [true, "A Product must have a price"],
     },
-    costPer: String,
+    quantity: Number,
     summary: {
       type: String,
       trim: true,
@@ -49,7 +49,7 @@ const farmProductSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: "FarmSeller",
     },
-    type: { type: String, enum: ["seed", "tool", "tractor","fertilizer"] },
+    type: { type: String, enum: ["seed", "tool", "tractor", "fertilizer"] },
     stockLeft: { type: Number, required: [true, "Enter Remaining Stock"] },
     location: {
       // GeoJSON
@@ -60,6 +60,10 @@ const farmProductSchema = new mongoose.Schema(
       },
       coordinates: [Number],
       city: String,
+    },
+    rent: {
+      type: Boolean,
+      default: false,
     },
   },
   {
@@ -104,4 +108,5 @@ farmProductSchema.pre(/^find/, function (next) {
 // });
 
 module.exports =
-  mongoose.models.FarmProduct || mongoose.model("FarmProduct", farmProductSchema);
+  mongoose.models.FarmProduct ||
+  mongoose.model("FarmProduct", farmProductSchema);

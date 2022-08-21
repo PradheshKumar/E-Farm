@@ -16,6 +16,7 @@ const buyerRouter = require("./Routes/buyerRoutes");
 const negotiationRouter = require("./Routes/negotiationRoutes");
 const orderRouter = require("./Routes/orderRoutes");
 const productRouter = require("./Routes/productRoutes");
+const farmProductRouter = require("./Routes/farmProductRoutes");
 const sellerRouter = require("./Routes/sellerRoutes");
 const farmSellerRouter = require("./Routes/farmSellerRoutes");
 const viewRouter = require("./Routes/viewRoutes");
@@ -127,6 +128,7 @@ app.use("/api/v1/seller", sellerRouter);
 app.use("/api/v1/farmSeller", farmSellerRouter);
 app.use("/api/v1/order", orderRouter);
 app.use("/api/v1/product", productRouter);
+app.use("/api/v1/farmProduct", farmProductRouter);
 app.use("/api/v1/negotiation", negotiationRouter);
 
 app.all("*", (req, res, next) => {
