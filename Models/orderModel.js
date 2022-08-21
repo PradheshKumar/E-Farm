@@ -45,7 +45,7 @@ orderSchema.pre(/^find/, function (next) {
   });
   this.populate({
     path: "products",
-    select: "name _id images",
+    select: "name _id images price",
   });
   next();
 });
