@@ -22,6 +22,18 @@ function allowBuyer(req, res, next) {
   }
   if (res.locals.user == null) next();
 }
+function allowSeller(req, res, next) {
+  if (res.locals.user) {
+    if (res.locals.user.role != "seller") {
+      res.status(401).redirect("/");
+      // .json({
+      //   status: "Permission denied",
+      //   message: "Your Are Not allowed to use this route . Redirecting....",
+      // });
+    } else next();
+  }
+  if (res.locals.user == null) next();
+}
 router.get(
   "/",
   authController.isLoggedIn,
@@ -29,10 +41,16 @@ router.get(
   viewsController.getIndex
 );
 router.get("/aboutUs", authController.isLoggedIn, viewsController.getAbout);
-router.get("/overview", authController.isLoggedIn, viewsController.getOverview);
+router.get(
+  "/overview",
+  authController.isLoggedIn,
+  allowBuyer,
+  viewsController.getOverview
+);
 router.get(
   "/farmOverview",
   authController.isLoggedIn,
+  allowSeller,
   viewsController.getfarmOverview
 );
 router.get("/myCart", authController.isLoggedIn, viewsController.getCart);
@@ -53,10 +71,21 @@ router.get(
 router.get(
   "/farmProduct/:fid",
   authController.isLoggedIn,
+  allowSeller,
   viewsController.getProduct
 );
-router.get("/productsWithin/:latlngDist", viewsController.withinRange);
-router.get("/farmProductsWithin/:latlgDist", viewsController.withinRange);
+router.get(
+  "/productsWithin/:latlngDist",
+  authController.isLoggedIn,
+  allowBuyer,
+  viewsController.withinRange
+);
+router.get(
+  "/farmProductsWithin/:latlgDist",
+  authController.isLoggedIn,
+  allowSeller,
+  viewsController.withinRange
+);
 router.get("/login", viewsController.getLoginForm);
 router.get(
   "/search/:key",
