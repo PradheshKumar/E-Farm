@@ -47,7 +47,9 @@ block content
                       .col-sm-6.col-md-6.col-lg-4.col-xl-4
                         .products-single.fix
                           .box-img-hover
-                            .type-lb
+                            if(prod.rent)
+                              .type-lb
+                                p.sale Rentable
                             img.img-fluid(src=`./../img/${prod.images[0]}` alt=`${prod.name} photo` onError="this.src = './../img/default.jpg'")
                             .mask-icon
                               ul
@@ -70,6 +72,7 @@ block content
                           .products-single.fix
                             .box-img-hover
                               .type-lb
+                                p.sale Rentable
                               img.img-fluid(src=`./../img/${prod.images[0]}` alt='Image' onError="this.src = './../img/default.jpg'")
                               
                               .mask-icon
@@ -83,7 +86,7 @@ block content
                             .why-text.full-width
                             
                               h4= prod.name
-                              h5= `₹ ${prod.price} per ${prod.costPer}`
+                              h5= `₹ ${prod.price}`
                               h6= prod.summary
                               a.btn.hvr-hover(href=`/product/${prod.id}`) Add to Cart
 
@@ -109,6 +112,8 @@ block content
                   | Tractor 
                 a.list-group-item.list-group-item-action(href='?type=fertilizer')
                   | Fertilizer 
+                a.list-group-item.list-group-item-action(href='?rent=true')
+                  | Rentable 
             .filter-price-left
               .title-left
                 h3 Price

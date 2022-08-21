@@ -53,12 +53,36 @@
   "stockLeft": 37
 },
 {
-  "images": ["farm/", "farm/", "farm/"],
-  "name": "Tomato Seed",
-  "price": 60,
-  "summary": "The tomato is the edible berry of the plant Solanum lycopersicum, comm…",
-  "quantity": 50,
-  "type": "seed",
-  "stockLeft": 160
+  "images": ["farm/harvestor1.jpg", "farm/harvestor2.jpg", "farm/harvestor3.jpg"],
+  "name": "John Deere Harvester -T Series",
+  "price": 2150000.00,
+  "summary": "It has a powerful 100HP turbocharged engine and offers range of options from cutting to threshing of crops",
+  "type": "tractor",
+  "stockLeft": 35,
+  "rent":true,
+  "rentPrice":7000
+
+},
+{
+  "images": ["farm/sowingMachine1.jpg", "farm/sowingMachine2.jpg", "farm/sowingMachine3.jpg"],
+  "name": "Sowing Machine",
+  "price": 60000.00,
+  "summary": "Seed Cum Fertilizer Drill for Tractor.  9 Tynes & 18 Pipes.  Require Tractor 35 HP Onwards",
+  "type": "tractor",
+  "stockLeft": 160,
+  "rent":true,
+  "rentPrice":3000
+
+},
+{
+  "images": ["farm/tractor1.jpg", "farm/tractor2.jpg", "farm/tractor3.jpg"],
+  "name": "Mahindra Tractor 575 DI XP PLUS",
+  "price": 750000.00,
+  "summary": "It is one of the best tractor models. This tractor model is manufactured by Mahindra Tractors. It is developed with high level technologies, making it powerful and reliable. Hence, the tractor model is loaded with innovative features which help to perform most challenging farming applications. ",
+  "type": "tractor",
+  "stockLeft": 35,
+  "rent":true,
+  "rentPrice":6000
+
 }
 }
