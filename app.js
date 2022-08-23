@@ -21,6 +21,7 @@ const farmProductRouter = require("./Routes/farmProductRoutes");
 const sellerRouter = require("./Routes/sellerRoutes");
 const farmSellerRouter = require("./Routes/farmSellerRoutes");
 const viewRouter = require("./Routes/viewRoutes");
+const rentRouter = require("./Routes/rentRoutes");
 
 // Start express app
 const app = express();
@@ -128,6 +129,7 @@ app.use("/api/v1/user", buyerRouter);
 app.use("/api/v1/seller", sellerRouter);
 app.use("/api/v1/farmSeller", farmSellerRouter);
 app.use("/api/v1/order", orderRouter);
+app.use("/api/v1/rent", rentRouter);
 app.use("/api/v1/farmOrder", farmOrderRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/farmProduct", farmProductRouter);
