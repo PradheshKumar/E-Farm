@@ -13,6 +13,7 @@ const prodImages = document.querySelector(".prodImage");
 const prodImageLabel = document.querySelector(".prodImagelabel");
 const addProdBtn = document.querySelector(".prodBtn");
 const addProdInput = document.querySelectorAll(".prodInput");
+const addRent = document.querySelector(".plRent");
 let price = [],
   stock = [],
   products = [],
@@ -58,6 +59,23 @@ export const sellerSideHandle = () => {
       if (prodImages.files.length != 0)
         prodImageLabel.innerHTML = `${prodImages.files.length} files uploaded`;
       else prodImageLabel.innerHTML = "No File Choosen";
+    });
+  }
+  if (addRent) {
+    addRent.addEventListener("click", async () => {
+      const res = await axios({
+        method: "POST",
+        url: `/api/v1/rent/createRent`,
+        data: {
+          product: addRent.dataset.id,
+          buyer: addRent.dataset.buyer,
+          seller: addRent.dataset.seller,
+        },
+      });
+
+      if (res.data.status === "success") {
+        window.location.href = "/MyRents";
+      }
     });
   }
 };

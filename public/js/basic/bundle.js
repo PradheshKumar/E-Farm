@@ -5917,6 +5917,7 @@ var prodImages = document.querySelector(".prodImage");
 var prodImageLabel = document.querySelector(".prodImagelabel");
 var addProdBtn = document.querySelector(".prodBtn");
 var addProdInput = document.querySelectorAll(".prodInput");
+var addRent = document.querySelector(".plRent");
 var price = [],
     stock = [],
     products = [],
@@ -5977,16 +5978,50 @@ var sellerSideHandle = function sellerSideHandle() {
       }, _callee);
     })));
   }
+
+  if (addRent) {
+    addRent.addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var res;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return (0, _axios.default)({
+                method: "POST",
+                url: "/api/v1/rent/createRent",
+                data: {
+                  product: addRent.dataset.id,
+                  buyer: addRent.dataset.buyer,
+                  seller: addRent.dataset.seller
+                }
+              });
+
+            case 2:
+              res = _context2.sent;
+
+              if (res.data.status === "success") {
+                window.location.href = "/MyRents";
+              }
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    })));
+  }
 };
 
 exports.sellerSideHandle = sellerSideHandle;
 
 var addProduct = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
     var form, res;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             form = new FormData();
             form.append("name", prodName.value);
@@ -5999,7 +6034,7 @@ var addProduct = /*#__PURE__*/function () {
             form.append("type", prodType.value);
             form.append("stockLeft", prodStockLeft.value);
             console.log(form.entries());
-            _context2.next = 13;
+            _context3.next = 13;
             return (0, _axios.default)({
               method: "POST",
               url: "/api/v1/product/addProduct",
@@ -6007,7 +6042,7 @@ var addProduct = /*#__PURE__*/function () {
             });
 
           case 13:
-            res = _context2.sent;
+            res = _context3.sent;
 
             if (res.data.status === "success") {
               window.location.href = "/seller_products";
@@ -6015,26 +6050,26 @@ var addProduct = /*#__PURE__*/function () {
 
           case 15:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2);
+    }, _callee3);
   }));
 
   return function addProduct() {
-    return _ref2.apply(this, arguments);
+    return _ref3.apply(this, arguments);
   };
 }();
 
 var updateProducts = function updateProducts() {
   products.forEach( /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(el, i) {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(el, i) {
       var res;
-      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              _context3.next = 2;
+              _context4.next = 2;
               return (0, _axios.default)({
                 method: "PATCH",
                 url: "/api/v1/product/".concat(el),
@@ -6045,7 +6080,7 @@ var updateProducts = function updateProducts() {
               });
 
             case 2:
-              res = _context3.sent;
+              res = _context4.sent;
 
               if (res.data.status === "success") {
                 location.reload();
@@ -6053,33 +6088,33 @@ var updateProducts = function updateProducts() {
 
             case 4:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3);
+      }, _callee4);
     }));
 
     return function (_x, _x2) {
-      return _ref3.apply(this, arguments);
+      return _ref4.apply(this, arguments);
     };
   }());
 };
 
 var removeProd = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(id) {
     var res;
-    return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context5.prev = _context5.next) {
           case 0:
-            _context4.next = 2;
+            _context5.next = 2;
             return (0, _axios.default)({
               method: "DELETE",
               url: "/api/v1/product/".concat(id)
             });
 
           case 2:
-            res = _context4.sent;
+            res = _context5.sent;
 
             if (res.data.status === "success") {
               location.reload();
@@ -6087,14 +6122,14 @@ var removeProd = /*#__PURE__*/function () {
 
           case 4:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4);
+    }, _callee5);
   }));
 
   return function removeProd(_x3) {
-    return _ref4.apply(this, arguments);
+    return _ref5.apply(this, arguments);
   };
 }();
 },{"axios":"../../../node_modules/axios/index.js"}],"../../../node_modules/express-rate-limit/dist/index.mjs":[function(require,module,exports) {
@@ -6842,7 +6877,7 @@ if (form) {
   });
 }
 
-if (window.location.href.includes("seller")) {
+if (window.location.href.includes("seller") || window.location.href.includes("rent")) {
   (0, _sellerSide.sellerSideHandle)();
 }
 
@@ -7033,7 +7068,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56366" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65332" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

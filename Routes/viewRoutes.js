@@ -138,7 +138,14 @@ router.get(
 router.get(
   "/seller_negotiate",
   authController.isLoggedIn,
+  allowSeller,
   viewsController.sellergetNegotiations
+);
+router.get(
+  "/MyRents",
+  authController.isLoggedIn,
+  allowSeller,
+  viewsController.getMyRents
 );
 
 module.exports = router;

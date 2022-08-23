@@ -317,10 +317,21 @@ exports.getRentPage = catchAsync(async (req, res, next) => {
   // 1) Get product data from collections
 
   // const doc = await features.query.explain();
-  const User = await Buyer.findById(req.params.id); // 2) Build template
+  const product = await FarmProduct.findById(req.params.id); // 2) Build template
   // 3) Render that template using product data from 1)
-  res.status(200).render("checkout", {
+  res.status(200).render("rentCheckOut", {
     title: "CheckOut",
-    User,
+    product,
+  });
+});
+exports.getMyRents = catchAsync(async (req, res, next) => {
+  // 1) Get product data from collections
+
+  // // const doc = await features.query.explain();
+  // const product = await FarmProduct.findById(req.params.id); // 2) Build template
+  // // 3) Render that template using product data from 1)
+  res.status(200).render("myRent", {
+    title: "My Rents",
+    // product,
   });
 });

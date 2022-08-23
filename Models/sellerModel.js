@@ -111,6 +111,11 @@ sellerSchema.virtual("product", {
   foreignField: "seller",
   localField: "_id",
 });
+sellerSchema.virtual("rents", {
+  ref: "Rent",
+  foreignField: "buyer",
+  localField: "_id",
+});
 sellerSchema.pre("save", function (next) {
   if (!this.isModified("password") || this.isNew) return next();
 

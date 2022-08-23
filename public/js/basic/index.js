@@ -117,7 +117,10 @@ if (form) {
     // return check;
   });
 }
-if (window.location.href.includes("seller")) {
+if (
+  window.location.href.includes("seller") ||
+  window.location.href.includes("rent")
+) {
   sellerSideHandle();
 }
 if (window.location.href.includes("login"))

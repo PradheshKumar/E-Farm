@@ -44,7 +44,7 @@ rentSchema.pre(/^find/, function (next) {
   });
   this.populate({
     path: "product",
-    select: "name _id images price",
+    select: "name _id images price rentPrice  ",
   });
   next();
 });
