@@ -152,7 +152,11 @@ exports.isLoggedIn = async (req, res, next) => {
       );
 
       // 2) Check if user still exists
-      let currentUser = await FarmSeller.findById(decoded.id);
+      let currentUser = await FarmSeller.findById(decoded.id).populate({
+        path: "rents",
+        select:
+          "id products productsQty totalPrice createdAt estimateDelivery startDate endDate totalDays rentAmount",
+      });
       if (!currentUser) {
         currentUser = await Buyer.findById(decoded.id)
           .populate({

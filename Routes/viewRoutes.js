@@ -94,7 +94,6 @@ router.get(
 );
 router.get(
   "/farmSearch/:key",
-
   authController.isLoggedIn,
   viewsController.searchFarmProduct
 );
@@ -116,7 +115,14 @@ router.get(
 );
 router.get("/resetPassword/:token", viewsController.getForgotPassword);
 /////////////////////SELLER ROUTES
-router.get("/seller-login", viewsController.getLoginForm);
+router.get(
+  "/seller-login",
+  (req, res, next) => {
+    res.locals.currentUrl = "seller";
+    next();
+  },
+  viewsController.getLoginForm
+);
 router.get(
   "/seller_products",
   setUser,
@@ -141,11 +147,6 @@ router.get(
   allowSeller,
   viewsController.sellergetNegotiations
 );
-router.get(
-  "/MyRents",
-  authController.isLoggedIn,
-  allowSeller,
-  viewsController.getMyRents
-);
+router.get("/MyRents", authController.isLoggedIn, viewsController.getMyRents);
 
 module.exports = router;

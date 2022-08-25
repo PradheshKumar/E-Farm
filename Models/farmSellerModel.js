@@ -41,7 +41,7 @@ const farmSellerSchema = new mongoose.Schema(
       coordinates: [Number],
       city: String,
     },
-    farmOrders: [
+    currentOrders: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "FarmOrder",
@@ -89,6 +89,11 @@ farmSellerSchema.pre("save", async function (next) {
 // Virtual populate
 farmSellerSchema.virtual("product", {
   ref: "FarmProduct",
+  foreignField: "seller",
+  localField: "_id",
+});
+farmSellerSchema.virtual("rents", {
+  ref: "Rent",
   foreignField: "seller",
   localField: "_id",
 });

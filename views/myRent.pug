@@ -26,7 +26,9 @@ block content
                                     th Start Date                             
                                     th End Date
                                     th Total Days                             
-                                    th Total Price                             
+                                    th Total Price         
+                                    if(user.role =="farmSeller")
+                                        th Status                    
                             tbody
                                 each order,i in user.rents
                                     tr.cartProducts
@@ -55,5 +57,22 @@ block content
                                         else 
                                             td.thumbnail-img
                                                 p Yet To be Picked Up
+                                        if(user.role =="farmSeller")
+                                            if(order.startDate)   
+                                                if(order.endDate)
+                                                    td.thumbnail-img
+                                                        p ENDED
+                                                else
+                                                    td 
+                                                    td
+                                                    td.thumbnail-img
+                                                        button.btn.hvr-hover.cartBtn.rtnProd(data-id=order.id) RETURN
+                                            else 
+                                                td 
+                                                td 
+                                                td
+                                                td.thumbnail-img
+                                                    button.btn.hvr-hover.cartBtn.pckProd(data-id=order.id) PICK UP
+                                       
 
                 

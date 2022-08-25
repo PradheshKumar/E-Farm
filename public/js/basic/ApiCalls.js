@@ -2,7 +2,7 @@
 import axios from "axios";
 import { showAlert } from "./alerts";
 const addCartBtn = document.querySelector(".cartBtn");
-export const login = async (email, password) => {
+export const login = async (email, password, id) => {
   const input = document.querySelectorAll(".validate-input");
 
   try {
@@ -17,9 +17,10 @@ export const login = async (email, password) => {
         },
       });
     } else {
+      console.log(`/api/v1/${id == 0 ? "farmSeller" : "seller"}/login`);
       res = await axios({
         method: "POST",
-        url: "/api/v1/seller/login",
+        url: `/api/v1/${id == 0 ? "farmSeller" : "seller"}/login`,
         data: {
           email,
           password,

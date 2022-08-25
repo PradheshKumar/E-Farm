@@ -14,6 +14,9 @@ const prodImageLabel = document.querySelector(".prodImagelabel");
 const addProdBtn = document.querySelector(".prodBtn");
 const addProdInput = document.querySelectorAll(".prodInput");
 const addRent = document.querySelector(".plRent");
+
+const pckProd = document.querySelectorAll(".pckProd");
+const rtnProd = document.querySelectorAll(".rtnProd");
 let price = [],
   stock = [],
   products = [],
@@ -76,6 +79,32 @@ export const sellerSideHandle = () => {
       if (res.data.status === "success") {
         window.location.href = "/MyRents";
       }
+    });
+  }
+  if (pckProd) {
+    pckProd.forEach((el) => {
+      el.addEventListener("click", async () => {
+        const res = await axios({
+          method: "PATCH",
+          url: `/api/v1/rent/startRentDate/${el.dataset.id}`,
+        });
+        if (res.data.status === "success") {
+          window.location.reload();
+        }
+      });
+    });
+  }
+  if (rtnProd) {
+    rtnProd.forEach((el) => {
+      el.addEventListener("click", async () => {
+        const res = await axios({
+          method: "PATCH",
+          url: `/api/v1/rent/endRentDate/${el.dataset.id}`,
+        });
+        if (res.data.status === "success") {
+          window.location.reload();
+        }
+      });
     });
   }
 };

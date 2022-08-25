@@ -51,6 +51,7 @@ const updatePassBtn = document.querySelector(".updatePassBtn");
 const negoIds = document.querySelectorAll(".negoId");
 const filterBtn = document.querySelector(".filterBtn");
 const distValue = document.querySelector(".distValue");
+const sellProd = document.querySelectorAll(".sellProd");
 if (window.location.href.includes("productsWithin"))
   distValue.value = window.location.href.split(",")[2].split("?")[0];
 addListener();
@@ -119,13 +120,22 @@ if (form) {
 }
 if (
   window.location.href.includes("seller") ||
-  window.location.href.includes("rent")
+  window.location.href.includes("rent") ||
+  window.location.href.includes("Rents")
 ) {
   sellerSideHandle();
 }
 if (window.location.href.includes("login"))
   loginRedirectBtn.parentElement.parentElement.remove();
 if (loginBtn) {
+  let id;
+  if (sellProd) {
+    sellProd.forEach((el) => {
+      el.addEventListener("click", () => {
+        id = el.dataset.id;
+      });
+    });
+  } else id = 3;
   loginBtn.addEventListener("click", () => {
     if (window.location.href.includes("seller")) logout();
     let check = true;
@@ -138,7 +148,7 @@ if (loginBtn) {
     if (check) {
       const email = input[0].value;
       const password = input[1].value;
-      login(email, password);
+      login(email, password, id);
     } else {
       return false;
     }
