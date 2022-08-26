@@ -4823,7 +4823,7 @@ var addToCart = /*#__PURE__*/function () {
             _context4.next = 5;
             return (0, _axios.default)({
               method: "POST",
-              url: "/api/v1/".concat(window.location.href.includes("farm") ? "seller" : "buyer", "/addCart/").concat(prodId, "/").concat(qty)
+              url: "/api/v1/".concat(window.location.pathname.includes("farm") ? "seller" : "buyer", "/addCart/").concat(prodId, "/").concat(qty)
             });
 
           case 5:
@@ -5551,7 +5551,7 @@ var withinDistance = /*#__PURE__*/function () {
         switch (_context17.prev = _context17.next) {
           case 0:
             navigator.geolocation.getCurrentPosition(function (position) {
-              if (!window.location.href.includes("farm")) window.location.href = "/productsWithin/".concat(position.coords.latitude, ",").concat(position.coords.longitude, ",").concat(dist);else window.location.href = "/farmProductsWithin/".concat(position.coords.latitude, ",").concat(position.coords.longitude, ",").concat(dist);
+              if (!window.location.pathname.includes("farm")) window.location.href = "/productsWithin/".concat(position.coords.latitude, ",").concat(position.coords.longitude, ",").concat(dist);else window.location.href = "/farmProductsWithin/".concat(position.coords.latitude, ",").concat(position.coords.longitude, ",").concat(dist);
             });
 
           case 1:

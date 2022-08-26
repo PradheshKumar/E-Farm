@@ -112,7 +112,7 @@ export const addToCart = async (prodId) => {
       const res = await axios({
         method: "POST",
         url: `/api/v1/${
-          window.location.href.includes("farm") ? "seller" : "buyer"
+          window.location.pathname.includes("farm") ? "seller" : "buyer"
         }/addCart/${prodId}/${qty}`,
       });
       if (res.data.status === "success") {
@@ -424,7 +424,7 @@ export const filterPrice = async (start, end) => {
 };
 export const withinDistance = async (dist) => {
   navigator.geolocation.getCurrentPosition((position) => {
-    if (!window.location.href.includes("farm"))
+    if (!window.location.pathname.includes("farm"))
       window.location.href = `/productsWithin/${position.coords.latitude},${position.coords.longitude},${dist}`;
     else
       window.location.href = `/farmProductsWithin/${position.coords.latitude},${position.coords.longitude},${dist}`;
