@@ -52,6 +52,18 @@ const negoIds = document.querySelectorAll(".negoId");
 const filterBtn = document.querySelector(".filterBtn");
 const distValue = document.querySelector(".distValue");
 const sellProd = document.querySelectorAll(".sellProd");
+const navItem = document.querySelectorAll(".nav-item");
+if (navItem) {
+  navItem.forEach((el) => {
+    el.classList.remove("active");
+    // el.removeClass("active");
+  });
+  if (window.location.href.includes("/overview")) {
+    navItem[2].classList.add("active");
+  } else if (window.location.href.includes("/aboutUs"))
+    navItem[1].classList.add("active");
+  else if (window.location.pathname == "/") navItem[0].classList.add("active");
+}
 if (window.location.href.includes("productsWithin"))
   distValue.value = window.location.href.split(",")[2].split("?")[0];
 addListener();

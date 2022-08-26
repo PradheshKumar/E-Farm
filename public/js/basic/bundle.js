@@ -4736,8 +4736,7 @@ var signUp = /*#__PURE__*/function () {
 
                       case 4:
                         res1 = _context2.sent;
-                        console.log(res1.data.results[0].components.city);
-                        _context2.next = 8;
+                        _context2.next = 7;
                         return (0, _axios.default)({
                           method: "POST",
                           url: "/api/v1/".concat(id == 0 ? "farmSeller" : "seller", "/signup"),
@@ -4753,17 +4752,19 @@ var signUp = /*#__PURE__*/function () {
                           }
                         });
 
-                      case 8:
+                      case 7:
                         res = _context2.sent;
 
                         if (res.data.status === "success") {
                           (0, _alerts.showAlert)("success", "SignedUp successfully!");
-                          window.setTimeout(function () {
+                          if (id == 0) window.setTimeout(function () {
+                            location.assign("/MyRents");
+                          }, 200);else window.setTimeout(function () {
                             location.assign("/seller_products");
                           }, 200);
                         }
 
-                      case 10:
+                      case 9:
                       case "end":
                         return _context2.stop();
                     }
@@ -5592,14 +5593,25 @@ exports.signUpForm = exports.forgotPasswordForm = void 0;
 var _ApiCalls = require("./ApiCalls.js");
 
 var loginForm = document.querySelector(".login100-form");
-var input;
-var signUpmarkup = "<span class=\"login100-form-title p-b-53\">Sign Up </span>\n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Name</span></div>\n  .custom-control.custom-radio\n              input#selling-Prod-0.custom-control-input.sellProd(name='selling-Prod' checked='checked' type='radio' data-id=\"0\")\n              label.custom-control-label(for='selling-Prod-0') Sell Farm Tools\n            .custom-control.custom-radio\n                input#selling-Prod-1.custom-control-input.sellProd(name='selling-Prod' checked='checked' type='radio' data-id=\"1\")\n                label.custom-control-label(for='selling-Prod-1') Sell Farm Products\n  <div class=\"wrap-input100 validate-input\" data-validate=\"User Name is required\">\n    <input class=\"input100\" type=\"text\" name=\"username\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Email Address</span></div>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Email Id is required\">\n    <input class=\"input100\" type=\"text\" name=\"email\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-13 p-b-9\"><span class=\"txt1\">Password</span>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Password is required\">\n    <input class=\"input100\" type=\"password\" name=\"pass\" autocomplete=\"on\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-13 p-b-9\"><span class=\"txt1\">Confirm Password</span>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Password is required\">\n    <input class=\"input100\" type=\"password\" name=\"ConfirmPass\" autocomplete=\"on\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"container-login100-form-btn m-t-17 signupBtn\">\n    <button type=\"button\" class=\"login100-form-btn signupBtn\" >Sign Up</button>\n  </div>";
+var input, id;
+var signUpmarkup = "\n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Name</span></div>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"User Name is required\">\n    <input class=\"input100\" type=\"text\" name=\"username\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Email Address</span></div>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Email Id is required\">\n    <input class=\"input100\" type=\"text\" name=\"email\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-13 p-b-9\"><span class=\"txt1\">Password</span>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Password is required\">\n    <input class=\"input100\" type=\"password\" name=\"pass\" autocomplete=\"on\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-13 p-b-9\"><span class=\"txt1\">Confirm Password</span>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Password is required\">\n    <input class=\"input100\" type=\"password\" name=\"ConfirmPass\" autocomplete=\"on\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"container-login100-form-btn m-t-17 signupBtn\">\n    <button type=\"button\" class=\"login100-form-btn signupBtn\" >Sign Up</button>\n  </div>";
+var signUp1markup = "<div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Name</span></div>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"User Name is required\">\n    <input class=\"input100\" type=\"text\" name=\"username\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Email Address</span></div>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Email Id is required\"> \n    <input class=\"input100\" type=\"text\" name=\"email\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-13 p-b-9\"><span class=\"txt1\">Password</span>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Password is required\">\n    <input class=\"input100\" type=\"password\" name=\"pass\" autocomplete=\"on\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-13 p-b-9\"><span class=\"txt1\">Confirm Password</span>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Password is required\">\n    <input class=\"input100\" type=\"password\" name=\"ConfirmPass\" autocomplete=\"on\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"container-login100-form-btn m-t-17 signupBtn\">\n    <button type=\"button\" class=\"login100-form-btn signupBtn\" >Sign Up</button>\n  </div>";
 var forgotMarkup = "<span class=\"login100-form-title p-b-53\">Forgot Password </span>\n \n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Email Address</span></div>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Email Id is required\">\n    <input class=\"input100 emailInpt\" type=\"text\" name=\"email\"/><span class=\"focus-input100\"></span>\n  </div>\n  \n  <div class=\"container-login100-form-btn m-t-17 \">\n    <button type=\"button\" class=\"login100-form-btn forgotPassword\" >Send Mail</button>\n  </div>";
 
 var signUpForm = function signUpForm(e) {
   e.preventDefault();
+  document.querySelector(".signUpName").innerHTML = "Sign Up";
   var sellProd = document.querySelectorAll(".sellProd");
-  loginForm.innerHTML = signUpmarkup;
+  if (window.location.href.includes("seller")) loginForm.innerHTML = signUp1markup;else loginForm.innerHTML = signUpmarkup;
+
+  if (sellProd) {
+    sellProd.forEach(function (el) {
+      el.addEventListener("click", function () {
+        id = el.dataset.id;
+      });
+    });
+  } else id = 3;
+
   input = document.querySelectorAll(".validate-input .input100");
   document.querySelector(".signupBtn").addEventListener("click", signUpFn);
   input.forEach(function (el) {
@@ -5621,14 +5633,13 @@ var signUpFn = function signUpFn(e) {
       check = false;
     }
   });
-  console.log("SIGNUP");
 
   if (check) {
     var name = input[0].value;
     var email = input[1].value;
     var password = input[2].value;
     var Cpassword = input[3].value;
-    (0, _ApiCalls.signUp)(name, email, password, Cpassword);
+    (0, _ApiCalls.signUp)(name, email, password, Cpassword, id);
   } else {
     return false;
   }
@@ -6879,6 +6890,18 @@ var negoIds = document.querySelectorAll(".negoId");
 var filterBtn = document.querySelector(".filterBtn");
 var distValue = document.querySelector(".distValue");
 var sellProd = document.querySelectorAll(".sellProd");
+var navItem = document.querySelectorAll(".nav-item");
+
+if (navItem) {
+  navItem.forEach(function (el) {
+    el.classList.remove("active"); // el.removeClass("active");
+  });
+
+  if (window.location.href.includes("/overview")) {
+    navItem[2].classList.add("active");
+  } else if (window.location.href.includes("/aboutUs")) navItem[1].classList.add("active");else if (window.location.pathname == "/") navItem[0].classList.add("active");
+}
+
 if (window.location.href.includes("productsWithin")) distValue.value = window.location.href.split(",")[2].split("?")[0];
 (0, _checkOut.addListener)();
 var distChange = false;

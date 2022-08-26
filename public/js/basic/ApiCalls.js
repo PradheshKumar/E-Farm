@@ -70,7 +70,6 @@ export const signUp = async (name, email, password, passwordConfirm, id) => {
           method: "GET",
           url: `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${long}&key=00a0febcd96b4f22aa5b755c3ef62fc3`,
         });
-        console.log(res1.data.results[0].components.city);
         const res = await axios({
           method: "POST",
           url: `/api/v1/${id == 0 ? "farmSeller" : "seller"}/signup`,
@@ -87,9 +86,15 @@ export const signUp = async (name, email, password, passwordConfirm, id) => {
         });
         if (res.data.status === "success") {
           showAlert("success", "SignedUp successfully!");
-          window.setTimeout(() => {
-            location.assign("/seller_products");
-          }, 200);
+
+          if (id == 0)
+            window.setTimeout(() => {
+              location.assign("/MyRents");
+            }, 200);
+          else
+            window.setTimeout(() => {
+              location.assign("/seller_products");
+            }, 200);
         }
       });
     }
