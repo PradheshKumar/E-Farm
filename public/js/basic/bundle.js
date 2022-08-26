@@ -4679,7 +4679,7 @@ var login = /*#__PURE__*/function () {
 exports.login = login;
 
 var signUp = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(name, email, password, passwordConfirm) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(name, email, password, passwordConfirm, id) {
     var input, res;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
@@ -4740,7 +4740,7 @@ var signUp = /*#__PURE__*/function () {
                         _context2.next = 8;
                         return (0, _axios.default)({
                           method: "POST",
-                          url: "/api/v1/seller/signup",
+                          url: "/api/v1/".concat(id == 0 ? "farmSeller" : "seller", "/signup"),
                           data: {
                             name: name,
                             email: email,
@@ -4771,7 +4771,7 @@ var signUp = /*#__PURE__*/function () {
                 }, _callee2);
               }));
 
-              return function (_x8) {
+              return function (_x9) {
                 return _ref3.apply(this, arguments);
               };
             }());
@@ -4798,7 +4798,7 @@ var signUp = /*#__PURE__*/function () {
     }, _callee3, null, [[1, 12]]);
   }));
 
-  return function signUp(_x4, _x5, _x6, _x7) {
+  return function signUp(_x4, _x5, _x6, _x7, _x8) {
     return _ref2.apply(this, arguments);
   };
 }();
@@ -4853,7 +4853,7 @@ var addToCart = /*#__PURE__*/function () {
     }, _callee4, null, [[2, 9]]);
   }));
 
-  return function addToCart(_x9) {
+  return function addToCart(_x10) {
     return _ref4.apply(this, arguments);
   };
 }();
@@ -4901,7 +4901,7 @@ var rmCart = /*#__PURE__*/function () {
     }, _callee5, null, [[0, 7]]);
   }));
 
-  return function rmCart(_x10, _x11) {
+  return function rmCart(_x11, _x12) {
     return _ref5.apply(this, arguments);
   };
 }();
@@ -4956,7 +4956,7 @@ var addNego = /*#__PURE__*/function () {
     }, _callee6, null, [[0, 7]]);
   }));
 
-  return function addNego(_x12, _x13, _x14, _x15) {
+  return function addNego(_x13, _x14, _x15, _x16) {
     return _ref6.apply(this, arguments);
   };
 }();
@@ -5006,7 +5006,7 @@ var acceptNego = /*#__PURE__*/function () {
     }, _callee7, null, [[0, 8]]);
   }));
 
-  return function acceptNego(_x16) {
+  return function acceptNego(_x17) {
     return _ref7.apply(this, arguments);
   };
 }();
@@ -5055,7 +5055,7 @@ var cancelNego = /*#__PURE__*/function () {
     }, _callee8, null, [[0, 7]]);
   }));
 
-  return function cancelNego(_x17) {
+  return function cancelNego(_x18) {
     return _ref8.apply(this, arguments);
   };
 }();
@@ -5108,7 +5108,7 @@ var replyNego = /*#__PURE__*/function () {
     }, _callee9, null, [[0, 7]]);
   }));
 
-  return function replyNego(_x18, _x19) {
+  return function replyNego(_x19, _x20) {
     return _ref9.apply(this, arguments);
   };
 }();
@@ -5258,7 +5258,7 @@ var updateDetails = /*#__PURE__*/function () {
     }, _callee11, null, [[1, 14]]);
   }));
 
-  return function updateDetails(_x20) {
+  return function updateDetails(_x21) {
     return _ref11.apply(this, arguments);
   };
 }();
@@ -5338,7 +5338,7 @@ var updatePassword = /*#__PURE__*/function () {
     }, _callee12, null, [[1, 14]]);
   }));
 
-  return function updatePassword(_x21, _x22, _x23) {
+  return function updatePassword(_x22, _x23, _x24) {
     return _ref12.apply(this, arguments);
   };
 }();
@@ -5420,7 +5420,7 @@ var resetPassFn = /*#__PURE__*/function () {
     }, _callee13, null, [[1, 15]]);
   }));
 
-  return function resetPassFn(_x24, _x25, _x26) {
+  return function resetPassFn(_x25, _x26, _x27) {
     return _ref13.apply(this, arguments);
   };
 }();
@@ -5472,7 +5472,7 @@ var updateCart = /*#__PURE__*/function () {
     }, _callee14, null, [[0, 7]]);
   }));
 
-  return function updateCart(_x27, _x28, _x29) {
+  return function updateCart(_x28, _x29, _x30) {
     return _ref14.apply(this, arguments);
   };
 }();
@@ -5550,7 +5550,7 @@ var filterPrice = /*#__PURE__*/function () {
     }, _callee16);
   }));
 
-  return function filterPrice(_x30, _x31) {
+  return function filterPrice(_x31, _x32) {
     return _ref16.apply(this, arguments);
   };
 }();
@@ -5575,7 +5575,7 @@ var withinDistance = /*#__PURE__*/function () {
     }, _callee17);
   }));
 
-  return function withinDistance(_x32) {
+  return function withinDistance(_x33) {
     return _ref17.apply(this, arguments);
   };
 }();
@@ -5593,11 +5593,12 @@ var _ApiCalls = require("./ApiCalls.js");
 
 var loginForm = document.querySelector(".login100-form");
 var input;
-var signUpmarkup = "<span class=\"login100-form-title p-b-53\">Sign Up </span>\n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Name</span></div>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"User Name is required\">\n    <input class=\"input100\" type=\"text\" name=\"username\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Email Address</span></div>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Email Id is required\">\n    <input class=\"input100\" type=\"text\" name=\"email\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-13 p-b-9\"><span class=\"txt1\">Password</span>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Password is required\">\n    <input class=\"input100\" type=\"password\" name=\"pass\" autocomplete=\"on\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-13 p-b-9\"><span class=\"txt1\">Confirm Password</span>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Password is required\">\n    <input class=\"input100\" type=\"password\" name=\"ConfirmPass\" autocomplete=\"on\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"container-login100-form-btn m-t-17 signupBtn\">\n    <button type=\"button\" class=\"login100-form-btn signupBtn\" >Sign Up</button>\n  </div>";
+var signUpmarkup = "<span class=\"login100-form-title p-b-53\">Sign Up </span>\n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Name</span></div>\n  .custom-control.custom-radio\n              input#selling-Prod-0.custom-control-input.sellProd(name='selling-Prod' checked='checked' type='radio' data-id=\"0\")\n              label.custom-control-label(for='selling-Prod-0') Sell Farm Tools\n            .custom-control.custom-radio\n                input#selling-Prod-1.custom-control-input.sellProd(name='selling-Prod' checked='checked' type='radio' data-id=\"1\")\n                label.custom-control-label(for='selling-Prod-1') Sell Farm Products\n  <div class=\"wrap-input100 validate-input\" data-validate=\"User Name is required\">\n    <input class=\"input100\" type=\"text\" name=\"username\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Email Address</span></div>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Email Id is required\">\n    <input class=\"input100\" type=\"text\" name=\"email\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-13 p-b-9\"><span class=\"txt1\">Password</span>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Password is required\">\n    <input class=\"input100\" type=\"password\" name=\"pass\" autocomplete=\"on\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"p-t-13 p-b-9\"><span class=\"txt1\">Confirm Password</span>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Password is required\">\n    <input class=\"input100\" type=\"password\" name=\"ConfirmPass\" autocomplete=\"on\"/><span class=\"focus-input100\"></span>\n  </div>\n  <div class=\"container-login100-form-btn m-t-17 signupBtn\">\n    <button type=\"button\" class=\"login100-form-btn signupBtn\" >Sign Up</button>\n  </div>";
 var forgotMarkup = "<span class=\"login100-form-title p-b-53\">Forgot Password </span>\n \n  <div class=\"p-t-31 p-b-9\"><span class=\"txt1\">Email Address</span></div>\n  <div class=\"wrap-input100 validate-input\" data-validate=\"Email Id is required\">\n    <input class=\"input100 emailInpt\" type=\"text\" name=\"email\"/><span class=\"focus-input100\"></span>\n  </div>\n  \n  <div class=\"container-login100-form-btn m-t-17 \">\n    <button type=\"button\" class=\"login100-form-btn forgotPassword\" >Send Mail</button>\n  </div>";
 
 var signUpForm = function signUpForm(e) {
   e.preventDefault();
+  var sellProd = document.querySelectorAll(".sellProd");
   loginForm.innerHTML = signUpmarkup;
   input = document.querySelectorAll(".validate-input .input100");
   document.querySelector(".signupBtn").addEventListener("click", signUpFn);
@@ -7144,7 +7145,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59053" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65093" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

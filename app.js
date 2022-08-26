@@ -134,7 +134,21 @@ app.use("/api/v1/farmOrder", farmOrderRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/farmProduct", farmProductRouter);
 app.use("/api/v1/negotiation", negotiationRouter);
-
+// import ondc
+const ondc = require("ondc-node");
+// import handlers for the ONDC API calls
+const handlers = require("./handlers");
+app.use(express.json());
+// Use ONDC Middleware to implement ONDC APIs in one line
+// You can pass custom APIs handlers
+// if handler does not exist a fallback handler will be used
+app.use(
+  "/ondc",
+  ondc.Middleware({
+    on_search: handlers["onSearch"],
+    on_init: handlers["onInit"],
+  })
+);
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });

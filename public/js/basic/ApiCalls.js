@@ -47,7 +47,7 @@ export const login = async (email, password, id) => {
   }
   return true;
 };
-export const signUp = async (name, email, password, passwordConfirm) => {
+export const signUp = async (name, email, password, passwordConfirm, id) => {
   const input = document.querySelectorAll(".validate-input");
   try {
     if (!window.location.href.includes("seller")) {
@@ -73,7 +73,7 @@ export const signUp = async (name, email, password, passwordConfirm) => {
         console.log(res1.data.results[0].components.city);
         const res = await axios({
           method: "POST",
-          url: "/api/v1/seller/signup",
+          url: `/api/v1/${id == 0 ? "farmSeller" : "seller"}/signup`,
           data: {
             name,
             email,

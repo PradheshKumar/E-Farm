@@ -5,6 +5,12 @@ let input;
 
 const signUpmarkup = `<span class="login100-form-title p-b-53">Sign Up </span>
   <div class="p-t-31 p-b-9"><span class="txt1">Name</span></div>
+  .custom-control.custom-radio
+              input#selling-Prod-0.custom-control-input.sellProd(name='selling-Prod' checked='checked' type='radio' data-id="0")
+              label.custom-control-label(for='selling-Prod-0') Sell Farm Tools
+            .custom-control.custom-radio
+                input#selling-Prod-1.custom-control-input.sellProd(name='selling-Prod' checked='checked' type='radio' data-id="1")
+                label.custom-control-label(for='selling-Prod-1') Sell Farm Products
   <div class="wrap-input100 validate-input" data-validate="User Name is required">
     <input class="input100" type="text" name="username"/><span class="focus-input100"></span>
   </div>
@@ -36,6 +42,7 @@ const forgotMarkup = `<span class="login100-form-title p-b-53">Forgot Password <
 
 export const signUpForm = (e) => {
   e.preventDefault();
+  const sellProd = document.querySelectorAll(".sellProd");
   loginForm.innerHTML = signUpmarkup;
   input = document.querySelectorAll(".validate-input .input100");
   document.querySelector(".signupBtn").addEventListener("click", signUpFn);
