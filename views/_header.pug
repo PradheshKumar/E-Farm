@@ -24,6 +24,12 @@ doctype html
                 a(href='/seller-login')
                   i.fa.fa-cart-plus
                   |  Start Selling
+            li  
+              #google_element
+              script(src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate")
+              script.
+                function  loadGoogleTranslate (){
+                new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, "google_element"); }
       .col-lg-6.col-md-6.col-sm-12.col-xs-12
         .login-box#basic.selectpicker.show-tick.form-control
           ul.loginRedirectBtn
