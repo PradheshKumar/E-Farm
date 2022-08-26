@@ -30,7 +30,7 @@ block content
                                     th Remove
                             tbody
                                 each prod,i in user.cart
-                                    tr.cartProducts
+                                    tr.cartProducts.cartProds
                                         td.thumbnail-img
                                             a(href='#')
                                                 img.img-fluid(src=`./../img/${prod.images[0]}` alt='' onError="this.src = './../img/default.jpg'") 

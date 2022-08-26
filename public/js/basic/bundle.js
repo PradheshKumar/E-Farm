@@ -4910,7 +4910,7 @@ exports.rmCart = rmCart;
 
 var addNego = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(id, buyer, price, qty) {
-    var res;
+    var res, cart;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
@@ -4932,9 +4932,9 @@ var addNego = /*#__PURE__*/function () {
           case 3:
             res = _context6.sent;
 
-            if (res.data.status === "success") {// const cart = document.querySelector(".cartProducts");
-              // if (cart) location.reload();
-              // else window.location.href = "/overview";
+            if (res.data.status === "success") {
+              cart = document.querySelector(".cartProds");
+              if (cart) location.reload();else window.location.href = "/negotiate";
             }
 
             _context6.next = 10;
@@ -5031,6 +5031,7 @@ var cancelNego = /*#__PURE__*/function () {
 
             if (res.data.status === "success") {
               nego = document.querySelector(".negoRow");
+              console.log(nego);
               if (nego) location.reload();else window.location.href = "/";
             }
 

@@ -156,9 +156,9 @@ export const addNego = async (id, buyer, price, qty) => {
       },
     });
     if (res.data.status === "success") {
-      // const cart = document.querySelector(".cartProducts");
-      // if (cart) location.reload();
-      // else window.location.href = "/overview";
+      const cart = document.querySelector(".cartProds");
+      if (cart) location.reload();
+      else window.location.href = "/negotiate";
     }
   } catch (err) {
     console.log("ERRRRORR", err);
@@ -191,6 +191,7 @@ export const cancelNego = async (negoId) => {
     });
     if (res.data.status === "success") {
       const nego = document.querySelector(".negoRow");
+      console.log(nego);
       if (nego) location.reload();
       else window.location.href = "/";
     }
