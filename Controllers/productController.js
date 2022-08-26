@@ -42,7 +42,6 @@ const upload = multer({
   storage: multerStorage,
   fileFilter: multerFilter,
 });
-console.log(upload.array("images", 3));
 exports.uploadImages = upload.array("images", 3);
 
 exports.resizeImage = catchAsync(async (req, res, next) => {
@@ -85,15 +84,12 @@ exports.addProductSeller = catchAsync(async (req, res, next) => {
   next();
 });
 exports.ProductToSeller = catchAsync(async (req, res, next) => {
-  console.log("sdsd");
   try {
     const seller = await Seller.findById(res.locals.user.id);
     const sellerProds = [...seller._doc.products, req.body.id];
-    console.log(typeof seller._doc.products[0]);
     const s = await Seller.findByIdAndUpdate(res.locals.user.id, {
       products: sellerProds,
     });
-    console.log(s);
   } catch (e) {
     console.log(e);
   }

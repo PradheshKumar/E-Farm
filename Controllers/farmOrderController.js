@@ -119,7 +119,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   const order = await Order.findById(req.params.orderId);
   const prod = await Product.findById(order.products[0]);
   // console.log(tour);
-  console.log(prod);
   let session;
   // 2) Create checkout session
   try {

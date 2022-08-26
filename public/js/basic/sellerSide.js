@@ -122,7 +122,6 @@ const addProduct = async () => {
   if (prodImages.files[2]) form.append("images", prodImages.files[2]);
   form.append("type", prodType.value);
   form.append("stockLeft", prodStockLeft.value);
-  console.log(form.entries());
 
   const res = await axios({
     method: "POST",

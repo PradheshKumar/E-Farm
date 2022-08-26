@@ -85,23 +85,7 @@ exports.addProductSeller = catchAsync(async (req, res, next) => {
 
   next();
 });
-exports.ProductToSeller = catchAsync(async (req, res, next) => {
-  console.log("sdsd");
-  try {
-    // const seller = await Seller.findById(res.locals.user.id);
-    // const sellerProds = [...seller._doc.products, req.body.id];
-    // console.log(typeof seller._doc.products[0]);
-    // const s = await Seller.findByIdAndUpdate(res.locals.user.id, {
-    //   products: sellerProds,
-    // });
-    console.log(s);
-  } catch (e) {
-    console.log(e);
-  }
-  res.status(201).json({
-    status: "success",
-  });
-});
+
 exports.getProductsWithin = catchAsync(async (req, res, next) => {
   const { distance, latlng, unit } = req.params;
   const [lat, lng] = latlng.split(",");

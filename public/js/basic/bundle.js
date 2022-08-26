@@ -4620,12 +4620,11 @@ var login = /*#__PURE__*/function () {
 
           case 5:
             res = _context.sent;
-            _context.next = 12;
+            _context.next = 11;
             break;
 
           case 8:
-            console.log("/api/v1/".concat(id == 0 ? "farmSeller" : "seller", "/login"));
-            _context.next = 11;
+            _context.next = 10;
             return (0, _axios.default)({
               method: "POST",
               url: "/api/v1/".concat(id == 0 ? "farmSeller" : "seller", "/login"),
@@ -4635,10 +4634,10 @@ var login = /*#__PURE__*/function () {
               }
             });
 
-          case 11:
+          case 10:
             res = _context.sent;
 
-          case 12:
+          case 11:
             if (res.data.status === "success") {
               (0, _alerts.showAlert)("success", "Logged in successfully!");
               window.setTimeout(function () {
@@ -4650,25 +4649,25 @@ var login = /*#__PURE__*/function () {
               }, 200);
             }
 
-            _context.next = 20;
+            _context.next = 19;
             break;
 
-          case 15:
-            _context.prev = 15;
+          case 14:
+            _context.prev = 14;
             _context.t0 = _context["catch"](1);
             showValidate(input[0]);
             input[0].dataset.validate = _context.t0.response.data.message;
             return _context.abrupt("return", false);
 
-          case 20:
+          case 19:
             return _context.abrupt("return", true);
 
-          case 21:
+          case 20:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 15]]);
+    }, _callee, null, [[1, 14]]);
   }));
 
   return function login(_x, _x2, _x3) {
@@ -4980,7 +4979,6 @@ var acceptNego = /*#__PURE__*/function () {
 
           case 3:
             res = _context7.sent;
-            console.log(res);
 
             if (res.data.status === "success") {
               // const cart = document.querySelector(".cartProducts");
@@ -4988,23 +4986,23 @@ var acceptNego = /*#__PURE__*/function () {
               window.location.href = "/order_placed/".concat(res.data.data.data._id);
             }
 
-            _context7.next = 11;
+            _context7.next = 10;
             break;
 
-          case 8:
-            _context7.prev = 8;
+          case 7:
+            _context7.prev = 7;
             _context7.t0 = _context7["catch"](0);
             console.log("ERRRRORR", _context7.t0); // showAlert("error", err.response.data.message);
 
-          case 11:
+          case 10:
             return _context7.abrupt("return", true);
 
-          case 12:
+          case 11:
           case "end":
             return _context7.stop();
         }
       }
-    }, _callee7, null, [[0, 8]]);
+    }, _callee7, null, [[0, 7]]);
   }));
 
   return function acceptNego(_x17) {
@@ -5032,7 +5030,6 @@ var cancelNego = /*#__PURE__*/function () {
             res = _context8.sent;
 
             if (res.data.status === "success") {
-              console.log("REMOVED");
               nego = document.querySelector(".negoRow");
               if (nego) location.reload();else window.location.href = "/";
             }
@@ -5144,12 +5141,11 @@ var forgPassFn = /*#__PURE__*/function () {
 
           case 7:
             res = _context10.sent;
-            _context10.next = 14;
+            _context10.next = 13;
             break;
 
           case 10:
-            console.log(email);
-            _context10.next = 13;
+            _context10.next = 12;
             return (0, _axios.default)({
               method: "POST",
               url: "api/v1/seller/forgotPassword",
@@ -5158,33 +5154,30 @@ var forgPassFn = /*#__PURE__*/function () {
               }
             });
 
-          case 13:
+          case 12:
             res = _context10.sent;
 
-          case 14:
+          case 13:
             if (res.data.status === "success") {
               location.reload();
             }
 
-            _context10.next = 22;
+            _context10.next = 21;
             break;
 
-          case 17:
-            _context10.prev = 17;
+          case 16:
+            _context10.prev = 16;
             _context10.t0 = _context10["catch"](3);
             showValidate(input[0]);
             input[0].dataset.validate = _context10.t0.response.data.message;
             return _context10.abrupt("return", false);
 
-          case 22:
-            console.log("sendmail");
-
-          case 23:
+          case 21:
           case "end":
             return _context10.stop();
         }
       }
-    }, _callee10, null, [[3, 17]]);
+    }, _callee10, null, [[3, 16]]);
   }));
 
   return function forgPassFn() {
@@ -5320,18 +5313,17 @@ var updatePassword = /*#__PURE__*/function () {
               }, 300);
             }
 
-            _context12.next = 20;
+            _context12.next = 19;
             break;
 
           case 14:
             _context12.prev = 14;
             _context12.t0 = _context12["catch"](1);
-            console.log(_context12.t0.response.data);
             showValidate(input[1]);
             input[1].dataset.validate = _context12.t0.response.data.message;
             return _context12.abrupt("return", false);
 
-          case 20:
+          case 19:
           case "end":
             return _context12.stop();
         }
@@ -5375,12 +5367,11 @@ var resetPassFn = /*#__PURE__*/function () {
 
           case 5:
             res = _context13.sent;
-            _context13.next = 12;
+            _context13.next = 11;
             break;
 
           case 8:
-            console.log(email);
-            _context13.next = 11;
+            _context13.next = 10;
             return (0, _axios.default)({
               method: "PATCH",
               url: "/api/v1/seller/resetPassword/".concat(token),
@@ -5390,35 +5381,31 @@ var resetPassFn = /*#__PURE__*/function () {
               }
             });
 
-          case 11:
+          case 10:
             res = _context13.sent;
 
-          case 12:
+          case 11:
             if (res.data.status === "success") {
-              console.log("SUCCESS");
               if (!window.location.href.includes("seller")) window.location.href = "/login";else window.location.href = "/seller-login";
             }
 
-            _context13.next = 20;
+            _context13.next = 19;
             break;
 
-          case 15:
-            _context13.prev = 15;
+          case 14:
+            _context13.prev = 14;
             _context13.t0 = _context13["catch"](1);
             showValidate(input[0]); // if (err.response.data.message.includes("Cast to string failed"))
 
             input[0].dataset.validate = _context13.t0.response.data.message;
             return _context13.abrupt("return", false);
 
-          case 20:
-            console.log("sendmail");
-
-          case 21:
+          case 19:
           case "end":
             return _context13.stop();
         }
       }
-    }, _callee13, null, [[1, 15]]);
+    }, _callee13, null, [[1, 14]]);
   }));
 
   return function resetPassFn(_x25, _x26, _x27) {
@@ -5454,18 +5441,17 @@ var updateCart = /*#__PURE__*/function () {
               // location.reload();
             }
 
-            _context14.next = 10;
+            _context14.next = 9;
             break;
 
           case 7:
             _context14.prev = 7;
             _context14.t0 = _context14["catch"](0);
-            console.log("ERRRRORR", _context14.t0); // showAlert("error", err.response.data.message);
 
-          case 10:
+          case 9:
             return _context14.abrupt("return", true);
 
-          case 11:
+          case 10:
           case "end":
             return _context14.stop();
         }
@@ -5505,16 +5491,15 @@ var logout = /*#__PURE__*/function () {
               if (hasUrl.includes(true)) window.location.href = "/";else if (!window.location.href.includes("seller-login")) location.reload();
             }
 
-            _context15.next = 11;
+            _context15.next = 10;
             break;
 
           case 7:
             _context15.prev = 7;
             _context15.t0 = _context15["catch"](0);
-            console.log(_context15.t0.response);
             (0, _alerts.showAlert)("error", "Error logging out! Try again.");
 
-          case 11:
+          case 10:
           case "end":
             return _context15.stop();
         }
@@ -6110,22 +6095,21 @@ var addProduct = /*#__PURE__*/function () {
             if (prodImages.files[2]) form.append("images", prodImages.files[2]);
             form.append("type", prodType.value);
             form.append("stockLeft", prodStockLeft.value);
-            console.log(form.entries());
-            _context5.next = 13;
+            _context5.next = 12;
             return (0, _axios.default)({
               method: "POST",
               url: "/api/v1/product/addProduct",
               data: form
             });
 
-          case 13:
+          case 12:
             res = _context5.sent;
 
             if (res.data.status === "success") {
               window.location.href = "/seller_products";
             }
 
-          case 15:
+          case 14:
           case "end":
             return _context5.stop();
         }
@@ -6933,8 +6917,6 @@ if (negoIds) {
     });
   });
   socket.on("wel", function (arg) {
-    console.log(negoIds[0].dataset.user, arg.negoStage);
-
     if (negoIds[0].dataset.user == "buyer" && arg.negoStage % 2 != 0) {
       if (localStorage.getItem("notify")) showNotification(arg.name, arg.bid, arg.negoStage);else Notification.requestPermission().then(function (permission) {
         if (permission == "granted") {
@@ -7096,7 +7078,6 @@ if (negoPgcancel) {
 
 if (resetPassBtn) {
   resetPassBtn.addEventListener("click", function () {
-    console.log("Click");
     (0, _ApiCalls.resetPassFn)(passConfirmReset.dataset.token, passwordReset.value, passConfirmReset.value);
   });
 }

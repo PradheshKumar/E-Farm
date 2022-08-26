@@ -92,7 +92,6 @@ if (negoIds) {
     socket.emit("join", { id: el.dataset.id });
   });
   socket.on("wel", (arg) => {
-    console.log(negoIds[0].dataset.user, arg.negoStage);
     if (negoIds[0].dataset.user == "buyer" && arg.negoStage % 2 != 0) {
       if (localStorage.getItem("notify"))
         showNotification(arg.name, arg.bid, arg.negoStage);
@@ -254,7 +253,6 @@ if (negoPgcancel) {
 }
 if (resetPassBtn) {
   resetPassBtn.addEventListener("click", () => {
-    console.log("Click");
     resetPassFn(
       passConfirmReset.dataset.token,
       passwordReset.value,
